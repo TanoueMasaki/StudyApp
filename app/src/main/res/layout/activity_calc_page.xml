@@ -6,44 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".CalcPageActivity">
 
-    <Button
-        android:id="@+id/buttonFinish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="トップに戻る"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/judgment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="判定する"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:ignore="MissingConstraints" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
-        android:layout_height="162dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFinish"
-        app:layout_constraintVertical_bias="0.355">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.17000002">
 
         <TextView
             android:id="@+id/leftValue"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="96sp" />
 
@@ -57,10 +33,54 @@
 
         <TextView
             android:id="@+id/rightValue"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:textSize="96sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonFinish"
+        android:layout_width="278dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#6B78A8"
+        android:text="トップに戻る"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/judgment"
+        android:layout_width="267dp"
+        android:layout_height="68dp"
+        android:backgroundTint="#5B73E4"
+        android:text="判定する"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.06999999"
+        tools:ignore="MissingConstraints" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-99dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/bu0"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textView9"
@@ -72,25 +92,193 @@
 
         <TextView
             android:id="@+id/answer"
-            android:layout_width="100dp"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=""
-            android:textSize="96sp" />
+            android:textSize="96sp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     </LinearLayout>
 
-<!--○×表示用-->
+    <!--○×表示用-->
     <TextView
         android:id="@+id/trueOrFalse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="500dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textSize="200sp"/>
+        app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/bu1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="1"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toStartOf="@+id/bu2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/bu6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="6"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toStartOf="@+id/bu7"
+        app:layout_constraintTop_toBottomOf="@+id/bu1" />
+
+    <Button
+        android:id="@+id/bu0"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="0"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toStartOf="@+id/bu1"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/bu5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="5"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toStartOf="@+id/bu6"
+        app:layout_constraintTop_toBottomOf="@+id/bu0" />
+
+    <Button
+        android:id="@+id/bu3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="3"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintStart_toEndOf="@+id/bu2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/bu8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="8"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintStart_toEndOf="@+id/bu7"
+        app:layout_constraintTop_toBottomOf="@+id/bu3" />
+
+    <Button
+        android:id="@+id/bu2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:text="2"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/bu7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:text="7"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bu2" />
+
+    <Button
+        android:id="@+id/bu4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="4"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintStart_toEndOf="@+id/bu3"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/bu9"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="9"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintStart_toEndOf="@+id/bu8"
+        app:layout_constraintTop_toBottomOf="@+id/bu4" />
+
+    <Button
+        android:id="@+id/buDelete"
+        android:layout_width="245dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="-21dp"
+        android:text="一字消す"
+        android:textColor="#333377"
+        android:textSize="34sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bu7"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bu7"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buAllClear"
+        android:layout_width="245dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="-21dp"
+        android:layout_marginTop="20dp"
+        android:text="全て消す"
+        android:textColor="#333377"
+        android:textSize="34sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/bu7"
+        app:layout_constraintTop_toBottomOf="@+id/bu7"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!--ライン-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

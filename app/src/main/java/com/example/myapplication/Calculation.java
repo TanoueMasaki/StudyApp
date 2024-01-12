@@ -1,49 +1,29 @@
 package com.example.myapplication;
 
+
+import com.example.myapplication.Operator;
+
 import java.util.ArrayList;
 //計算用クラス
 public class Calculation {
-	
-	
-	
-	
-	
-	//列挙型で演算子を限定する
-    public enum Operator {
-        addition,
-        subtraction,
-        multiplication,
-        division
-    }
-    
-  //演算子を判定して文字列で返す
-    public String setOpe(Operator ope){
-    	String opeStr = "エラー";
-        switch (ope){
-            case addition :
-                opeStr = "+";
-            case subtraction:
-                opeStr = "-";
-            case multiplication:
-                opeStr = "×";
-            case division:
-                opeStr = "÷";
-        }
-        return opeStr;
-    }
-    
-    //計算して答えを返す
-    public int makeCalculation(Operator ope,int leftValue,int rightValue){
+
+
+    public int makeCalculation(int opeInt,int leftValue,int rightValue){
     	int answer = 0;
-        switch (ope){
-            case addition :
-                answer = leftValue + rightValue;
-            case subtraction:
-                answer = leftValue - rightValue;
-            case multiplication:
-                answer = leftValue * rightValue;
-            case division:
-                answer = leftValue / rightValue;//余りを未定義
+
+        switch (opeInt) {
+            case 0 :
+            answer = leftValue + rightValue;
+            break;
+            case 1 :
+            answer = leftValue - rightValue;
+            break;
+            case 2 :
+            answer = leftValue * rightValue;
+            break;
+            case 3 :
+            answer = leftValue / rightValue;
+            break;
         }
         return answer;
     }
@@ -57,3 +37,4 @@ public class Calculation {
 		return array;
 	}
 }
+
