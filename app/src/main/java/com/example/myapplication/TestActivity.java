@@ -50,6 +50,12 @@ public class TestActivity extends AppCompatActivity {
 
         });
     }
+//    try {
+//        //FileInputStreamを使用し、ファイルの内容を1行ずつ表示するJavaサンプルコード
+//        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("C:\\test\\readLine.txt"), Charset.forName("UTF-8"))) ;
+//        String text;
+//        while ((text = br.readLine()) != null) {System.out.println(text);}
+//    } catch (Exception ex){ }
 
 
 }

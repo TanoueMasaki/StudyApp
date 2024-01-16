@@ -32,6 +32,7 @@ public class CalcPageActivity extends AppCompatActivity{
     TextView rightValueText;
     TextView answerText;
     TextView textJudge;
+    TextView textTap;
     Button bu0;
     Button bu1;
     Button bu2;
@@ -157,6 +158,8 @@ public class CalcPageActivity extends AppCompatActivity{
         rightValueText = findViewById(R.id.rightValue);
         answerText = findViewById(R.id.answer);
         textJudge = findViewById(R.id.textJudge);
+        textTap = findViewById(R.id.textTap);
+        textTap.setVisibility(View.INVISIBLE);
 
         this.setLeftValue(questions.get(getLeftCount()));
         String leftValueStr = String.valueOf(this.getLeftValue());
@@ -186,6 +189,7 @@ public class CalcPageActivity extends AppCompatActivity{
                 buAllClear.setVisibility(View.INVISIBLE);
                 buttonFinish.setVisibility(View.INVISIBLE);
                 judgment.setVisibility(View.INVISIBLE);
+                textTap.setVisibility(View.VISIBLE);
 
                     String answerStr = answerText.getText().toString();
                     int answer = Integer.parseInt(answerStr);
@@ -358,6 +362,7 @@ public class CalcPageActivity extends AppCompatActivity{
                 buAllClear.setVisibility(View.VISIBLE);
                 buttonFinish.setVisibility(View.VISIBLE);
                 judgment.setVisibility(View.VISIBLE);
+                textTap.setVisibility(View.INVISIBLE);
 
                 String rightValueStr;
                 String leftValueStr;
@@ -383,14 +388,12 @@ public class CalcPageActivity extends AppCompatActivity{
                 CalcPageActivity.this.clearAnswerStr();
                 answerText.setText(CalcPageActivity.this.getAnswerStr());
 
-                if (CalcPageActivity.this.getRightCount() + 1 == questions.size() &&
-                    CalcPageActivity.this.getLeftCount() + 1 == questions.size()) {
-                    System.out.println("終了");
-                } else {
-                    System.out.println("途中");
-                }
                 textJudge.setText("");
 
+                if (CalcPageActivity.this.getRightCount() + 1 == questions.size() &&
+                    CalcPageActivity.this.getLeftCount() + 1 == questions.size()) {
+
+                }
                 return false;
             }
         });
