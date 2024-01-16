@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         rightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         rightSpinner.setAdapter(rightAdapter);
 
-        //演算子ボタンのインスタンス化
+        //演算子ボタンのリスナー登録
         Button buAddition = findViewById(R.id.buAddition);
         Button buSubtraction = findViewById(R.id.buSubtraction);
         Button buMultiplication = findViewById(R.id.buMultiplication);
@@ -127,6 +126,15 @@ public class MainActivity extends AppCompatActivity {
                 intentCalcPage.putExtra("FINAL",finalValInt);
                 //アクティビティスタート
                 startActivity(intentCalcPage);
+            }
+        });
+        //テストボタンが押されたら
+        Button buTest = findViewById(R.id.buTest);
+        buTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentTest = new Intent(MainActivity.this, TestActivity.class);
+                startActivity(intentTest);
             }
         });
     }
