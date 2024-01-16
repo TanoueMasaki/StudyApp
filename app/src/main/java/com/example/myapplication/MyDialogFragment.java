@@ -28,6 +28,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class MyDialogFragment extends DialogFragment {
 
 
+    //使わない、備忘録用に置いておく
+    //使う際は使うクラス内で以下を記述
+    //DialogFragment dialogFragment = new MyDialogFragment("○");
+    //dialogFragment.setCancelable(false);
+    //dialogFragment.show(getSupportFragmentManager(), "my_dialog");
     CalcPageActivity calcPageActivity = new CalcPageActivity();
 
     public MyDialogFragment(String title){
@@ -53,10 +58,10 @@ public class MyDialogFragment extends DialogFragment {
         titleView.setBackgroundColor(Color.TRANSPARENT);
         titleView.setPadding(20, -500, 20, 20);
         titleView.setGravity(Gravity.CENTER);
-        titleView.setOnTouchListener((v, event) -> {
-            dismiss();
-            return false;
-        });
+//        titleView.setOnTouchListener((v, event) -> {
+//            dismiss();
+//            return false;
+//        });
         return new MaterialAlertDialogBuilder(requireActivity())
                 .setCustomTitle(titleView)
                 .setBackground(new ColorDrawable(Color.TRANSPARENT))
@@ -65,6 +70,5 @@ public class MyDialogFragment extends DialogFragment {
     public void onPause(){
         super.onPause();
 
-        calcPageActivity.nextQuestion();
     }
 }
