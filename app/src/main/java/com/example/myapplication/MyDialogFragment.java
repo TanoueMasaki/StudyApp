@@ -25,24 +25,49 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyDialogFragment extends DialogFragment {
+
+    //フィールド
+    private String title;
+    private String message;
+    private String[] array;
+    ArrayList<Integer> checkedItems = new ArrayList<Integer>();
+
+    //コンストラクタ
     public MyDialogFragment(String title,String message){
         this.setTitle(title);
         this.setMessage(message);
     }
-    private String title;
-    private String message;
+    public MyDialogFragment(String title, List<String[]> array){
+        this.setTitle(title);
+        this.setArray(array);
+    }
+
+    //セッター
     public void setTitle(String title) {
         this.title = title;
     }
     public void setMessage(String message){
         this.message = message;
     }
+    public void setArray(List<String[]> list){
+        for(int i = 0;i < list.size();i++){
+            this.array[i] = String.join(",",list.get(i));
+        }
+    }
+
+    //ゲッター
     public String getTitle(){
         return this.title;
     }
     public String getMessage(){
         return this.message;
+    }
+    public String[] getArray(){
+        return this.array;
     }
 
     @NonNull
@@ -51,12 +76,22 @@ public class MyDialogFragment extends DialogFragment {
 
         return new AlertDialog.Builder(requireActivity())
                 .setTitle(getTitle())
-                .setMessage(getMessage())
-                .setPositiveButton("OK", (dialog, id) -> {
-                    // このボタンを押した時の処理を書きます。
+                .setMultiChoiceItems(getArray(), null, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if (isChecked) checkedItems.add(which);
+                        else checkedItems.remove((Integer) which);
+                    }
                 })
-                .setNegativeButton("キャンセル", null)
-                .setNeutralButton("あとで", null)
-                .create();
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        for (Integer i : checkedItems) {
+                            // item_i checked
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }

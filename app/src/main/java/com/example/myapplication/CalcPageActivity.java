@@ -8,12 +8,15 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -32,7 +35,8 @@ public class CalcPageActivity extends AppCompatActivity{
     private String answerStr = "";
     private ArrayList<Integer> questions;//問題作成用配列
     String[] currentResults;
-    List<String> results;
+    List<String[]> results;
+    List<String> results2;
     TextView leftValueText;
     TextView rightValueText;
     TextView answerText;
@@ -96,6 +100,9 @@ public class CalcPageActivity extends AppCompatActivity{
     public  void setQuestions(ArrayList<Integer> array ){
         this.questions = array;
     }
+    public void setResults(String[] array){
+        this.results.add(array);
+    }
 
     //ゲッター
     public int getInitialVal() {
@@ -128,13 +135,8 @@ public class CalcPageActivity extends AppCompatActivity{
     public int getQuestionSize(){
         return this.questions.size();
     }
-    public String getResults(){
-        String resultsStr = "";
-
-        for(int i = 0;i < results.size();i++){
-            resultsStr += results.get(i) + "\n";
-        }
-        return resultsStr;
+    public List<String[]> getResultsStr(){
+        return this.results;
     }
 
     //解答を全削除
@@ -209,68 +211,13 @@ public class CalcPageActivity extends AppCompatActivity{
         this.setRightValue(questions.get(getRightCount()));
         String rightValueStr = String.valueOf(this.getRightValue());
         rightValueText.setText(rightValueStr);
-
-        //○×がタッチされたら非表示にして次の問題へ
-//        textJudge.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                bu0.setVisibility(View.VISIBLE);
-//                bu1.setVisibility(View.VISIBLE);
-//                bu2.setVisibility(View.VISIBLE);
-//                bu3.setVisibility(View.VISIBLE);
-//                bu4.setVisibility(View.VISIBLE);
-//                bu5.setVisibility(View.VISIBLE);
-//                bu6.setVisibility(View.VISIBLE);
-//                bu7.setVisibility(View.VISIBLE);
-//                bu8.setVisibility(View.VISIBLE);
-//                bu9.setVisibility(View.VISIBLE);
-//                buDelete.setVisibility(View.VISIBLE);
-//                buAllClear.setVisibility(View.VISIBLE);
-//                buttonFinish.setVisibility(View.VISIBLE);
-//                judgment.setVisibility(View.VISIBLE);
-//
-//                textTap.setVisibility(View.INVISIBLE);
-//                textJudge.setVisibility(View.INVISIBLE);
-//                maru.setVisibility(View.INVISIBLE);
-//                batsu.setVisibility(View.INVISIBLE);
-//
-//                String rightValueStr;
-//                String leftValueStr;
-//                if (CalcPageActivity.this.getRightCount() + 1 < getQuestionSize()) {
-//                    CalcPageActivity.this.setRightCount(1);
-//                    CalcPageActivity.this.setRightValue(CalcPageActivity.this.questions.get(getRightCount()));
-//                    rightValueStr = String.valueOf(CalcPageActivity.this.getRightValue());
-//                    rightValueText.setText(rightValueStr);
-//                } else if (CalcPageActivity.this.getRightCount() + 1 == getQuestionSize() &&
-//                           CalcPageActivity.this.getLeftCount() + 1 < getQuestionSize()) {
-//                    CalcPageActivity.this.setLeftCount(1);
-//                    CalcPageActivity.this.setLeftValue(CalcPageActivity.this.questions.get(getLeftCount()));
-//                    leftValueStr = String.valueOf(CalcPageActivity.this.getLeftValue());
-//                    leftValueText.setText(leftValueStr);
-//                    CalcPageActivity.this.clearRightCount();
-//                    CalcPageActivity.this.setRightValue(CalcPageActivity.this.questions.get(getRightCount()));
-//                    rightValueStr = String.valueOf(CalcPageActivity.this.getRightValue());
-//                    rightValueText.setText(rightValueStr);
-//                }
-//                //問題番号に+1する
-//                CalcPageActivity.this.setQuestionNum(1);
-//                //入力をクリア
-//                CalcPageActivity.this.clearAnswerStr();
-//                answerText.setText(CalcPageActivity.this.getAnswerStr());
-//
-//                if (CalcPageActivity.this.getRightCount() + 1 == questions.size() &&
-//                    CalcPageActivity.this.getLeftCount() + 1 == questions.size()) {
-//
-//                }
-//                return false;
-//            }
-//        });
     }
 
     //判定ボタンが押されたら
     public void onClickJudgment(View view) {
         currentResults = new String[7];
         results = new ArrayList<>();
+        results2 = new ArrayList<>();
 
         bu0.setVisibility(View.INVISIBLE);
         bu1.setVisibility(View.INVISIBLE);
@@ -315,8 +262,9 @@ public class CalcPageActivity extends AppCompatActivity{
 
         //現在の問題の結果を","区切りで１つの文字列してcurrentResultに代入
         String currentResult = String.join(",", currentResults);
-        //問題終了時のResult画面に表示する用に今回分の問題すべてをArrayListに格納する
-        results.add(currentResult);
+        //問題終了時のResult画面に表示する用に今回分の問題すべてをListに格納する
+        this.setResults(currentResults);
+        this.results2.add(currentResult);
         //次回以降にも結果を閲覧できる用に内部ストレージに保存しておく
         try{
             FileOutputStream fileOutputstream = openFileOutput("results.csv", MODE_APPEND);
@@ -327,55 +275,61 @@ public class CalcPageActivity extends AppCompatActivity{
         }
     }
 
-    //判定後処理用のTextViewをタップしたら
+    //○×がタップされたら非表示にして次の問題へ
     public void onClickTextJudge(View view) {
-        bu0.setVisibility(View.VISIBLE);
-        bu1.setVisibility(View.VISIBLE);
-        bu2.setVisibility(View.VISIBLE);
-        bu3.setVisibility(View.VISIBLE);
-        bu4.setVisibility(View.VISIBLE);
-        bu5.setVisibility(View.VISIBLE);
-        bu6.setVisibility(View.VISIBLE);
-        bu7.setVisibility(View.VISIBLE);
-        bu8.setVisibility(View.VISIBLE);
-        bu9.setVisibility(View.VISIBLE);
-        buDelete.setVisibility(View.VISIBLE);
-        buAllClear.setVisibility(View.VISIBLE);
-        buttonFinish.setVisibility(View.VISIBLE);
-        judgment.setVisibility(View.VISIBLE);
 
-        textTap.setVisibility(View.INVISIBLE);
-        textJudge.setVisibility(View.INVISIBLE);
-        maru.setVisibility(View.INVISIBLE);
-        batsu.setVisibility(View.INVISIBLE);
+        if(this.getRightCount() + 1 == questions.size() &&
+                this.getLeftCount() + 1 == questions.size()) {
+            Intent intentTest = new Intent(CalcPageActivity.this, ResultActivity.class);
+            startActivity(intentTest);
+            //両辺とも最大値になったら終了
+            //ダイアログに結果を表示して終了（終了はダイアログから呼び出す）
+//            DialogFragment dialogFragment = new MyDialogFragment("解答結果", this.getResultsStr());
+//            dialogFragment.setCancelable(false);
+//            dialogFragment.show(getSupportFragmentManager(), "my_dialog");
 
-        String rightValueStr;
-        String leftValueStr;
-        if (this.getRightCount() + 1 < getQuestionSize()) {
-            this.setRightCount(1);
-            this.setRightValue(this.questions.get(getRightCount()));
-            rightValueStr = String.valueOf(this.getRightValue());
-            rightValueText.setText(rightValueStr);
-        } else if (this.getRightCount() + 1 == getQuestionSize() &&
-                this.getLeftCount() + 1 < getQuestionSize()) {
-            this.setLeftCount(1);
-            this.setLeftValue(this.questions.get(getLeftCount()));
-            leftValueStr = String.valueOf(this.getLeftValue());
-            leftValueText.setText(leftValueStr);
-            this.clearRightCount();
-            this.setRightValue(this.questions.get(getRightCount()));
-            rightValueStr = String.valueOf(this.getRightValue());
-            rightValueText.setText(rightValueStr);
-        }
-
-        //問題が終わったら結果を表示して終了
-        if (this.getRightCount() + 1 == questions.size() &&
-            this.getLeftCount() + 1 == questions.size()) {
-            DialogFragment dialogFragment = new MyDialogFragment("解答結果",getResults());
-            dialogFragment.setCancelable(false);
-            dialogFragment.show(getSupportFragmentManager(), "my_dialog");
-            System.out.println(getResults());
         }else{
+            //各ボタンの再表示
+            bu0.setVisibility(View.VISIBLE);
+            bu1.setVisibility(View.VISIBLE);
+            bu2.setVisibility(View.VISIBLE);
+            bu3.setVisibility(View.VISIBLE);
+            bu4.setVisibility(View.VISIBLE);
+            bu5.setVisibility(View.VISIBLE);
+            bu6.setVisibility(View.VISIBLE);
+            bu7.setVisibility(View.VISIBLE);
+            bu8.setVisibility(View.VISIBLE);
+            bu9.setVisibility(View.VISIBLE);
+            buDelete.setVisibility(View.VISIBLE);
+            buAllClear.setVisibility(View.VISIBLE);
+            buttonFinish.setVisibility(View.VISIBLE);
+            judgment.setVisibility(View.VISIBLE);
+
+            //○×の非表示
+            textTap.setVisibility(View.INVISIBLE);
+            textJudge.setVisibility(View.INVISIBLE);
+            maru.setVisibility(View.INVISIBLE);
+            batsu.setVisibility(View.INVISIBLE);
+
+            //次の問題へ
+            String rightValueStr;
+            String leftValueStr;
+            if (this.getRightCount() + 1 < getQuestionSize()) {
+                this.setRightCount(1);
+                this.setRightValue(this.questions.get(getRightCount()));
+                rightValueStr = String.valueOf(this.getRightValue());
+                rightValueText.setText(rightValueStr);
+            } else if (this.getRightCount() + 1 == getQuestionSize() &&
+                    this.getLeftCount() + 1 < getQuestionSize()) {
+                this.setLeftCount(1);
+                this.setLeftValue(this.questions.get(getLeftCount()));
+                leftValueStr = String.valueOf(this.getLeftValue());
+                leftValueText.setText(leftValueStr);
+                this.clearRightCount();
+                this.setRightValue(this.questions.get(getRightCount()));
+                rightValueStr = String.valueOf(this.getRightValue());
+                rightValueText.setText(rightValueStr);
+            }
             //問題番号に+1する
             this.setQuestionNum(1);
             //入力をクリア
