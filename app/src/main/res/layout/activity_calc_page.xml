@@ -267,29 +267,31 @@
 
     <TextView
         android:id="@+id/textJudge"
-        android:layout_width="wrap_content"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-70dp"
         android:elevation="1dp"
+        android:gravity="center"
         android:text=""
-        android:textSize="250dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        android:textSize="320dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textTap"
-        android:layout_width="wrap_content"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:elevation="1dp"
+        android:gravity="center"
         android:text="タップしてつぎへ"
         android:textColor="@color/red"
         android:textSize="50dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textJudge"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
