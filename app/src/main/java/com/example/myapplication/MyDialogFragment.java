@@ -26,49 +26,37 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MyDialogFragment extends DialogFragment {
-
-
-    //使わない、備忘録用に置いておく
-    //使う際は使うクラス内で以下を記述
-    //DialogFragment dialogFragment = new MyDialogFragment("○");
-    //dialogFragment.setCancelable(false);
-    //dialogFragment.show(getSupportFragmentManager(), "my_dialog");
-    CalcPageActivity calcPageActivity = new CalcPageActivity();
-
-    public MyDialogFragment(String title){
+    public MyDialogFragment(String title,String message){
         this.setTitle(title);
+        this.setMessage(message);
     }
     private String title;
+    private String message;
     public void setTitle(String title) {
         this.title = title;
+    }
+    public void setMessage(String message){
+        this.message = message;
     }
     public String getTitle(){
         return this.title;
     }
-
+    public String getMessage(){
+        return this.message;
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-        TextView titleView = new TextView(getActivity());
-        titleView.setText(this.getTitle());
-        titleView.setTextSize(600);
-        titleView.setTextColor(Color.RED);
-        titleView.setBackgroundColor(Color.TRANSPARENT);
-        titleView.setPadding(20, -500, 20, 20);
-        titleView.setGravity(Gravity.CENTER);
-//        titleView.setOnTouchListener((v, event) -> {
-//            dismiss();
-//            return false;
-//        });
-        return new MaterialAlertDialogBuilder(requireActivity())
-                .setCustomTitle(titleView)
-                .setBackground(new ColorDrawable(Color.TRANSPARENT))
+        return new AlertDialog.Builder(requireActivity())
+                .setTitle(getTitle())
+                .setMessage(getMessage())
+                .setPositiveButton("OK", (dialog, id) -> {
+                    // このボタンを押した時の処理を書きます。
+                })
+                .setNegativeButton("キャンセル", null)
+                .setNeutralButton("あとで", null)
                 .create();
-    }
-    public void onPause(){
-        super.onPause();
-
     }
 }

@@ -16,13 +16,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.17000002">
-
         <TextView
             android:id="@+id/leftValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="96sp" />
-
         <TextView
             android:id="@+id/ope"
             android:layout_width="70dp"
@@ -30,17 +28,47 @@
             android:layout_marginStart="10dp"
             android:text="+"
             android:textSize="96sp" />
-
         <TextView
             android:id="@+id/rightValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:textSize="96sp" />
-
     </LinearLayout>
 
+<!--"="と答えのセット-->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-99dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/bu0"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0">
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="="
+            android:textSize="96sp" />
+        <TextView
+            android:id="@+id/answer"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=""
+            android:textSize="96sp"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewMaru" />
+    </LinearLayout>
+
+<!--TOPに戻るボタン-->
     <Button
+        android:onClick="onClickButtonFinish"
         android:id="@+id/buttonFinish"
         android:layout_width="278dp"
         android:layout_height="87dp"
@@ -54,6 +82,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:onClick="onClickJudgment"
         android:id="@+id/judgment"
         android:layout_width="267dp"
         android:layout_height="68dp"
@@ -68,66 +97,8 @@
         app:layout_constraintVertical_bias="0.06999999"
         tools:ignore="MissingConstraints" />
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-99dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/bu0"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="="
-            android:textSize="96sp" />
-
-        <TextView
-            android:id="@+id/answer"
-            android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="96sp"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    </LinearLayout>
-
     <Button
-        android:id="@+id/bu1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="1"
-        android:textColor="#333377"
-        android:textSize="60sp"
-        app:backgroundTint="#BEC8EF"
-        app:layout_constraintEnd_toStartOf="@+id/bu2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <Button
-        android:id="@+id/bu6"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="6"
-        android:textColor="#333377"
-        android:textSize="60sp"
-        app:backgroundTint="#BEC8EF"
-        app:layout_constraintEnd_toStartOf="@+id/bu7"
-        app:layout_constraintTop_toBottomOf="@+id/bu1" />
-
-    <Button
+        android:onClick="onClickBu0"
         android:id="@+id/bu0"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -139,47 +110,21 @@
         app:backgroundTint="#BEC8EF"
         app:layout_constraintEnd_toStartOf="@+id/bu1"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
     <Button
-        android:id="@+id/bu5"
+        android:onClick="onClickBu1"
+        android:id="@+id/bu1"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="5"
+        android:text="1"
         android:textColor="#333377"
         android:textSize="60sp"
         app:backgroundTint="#BEC8EF"
-        app:layout_constraintEnd_toStartOf="@+id/bu6"
-        app:layout_constraintTop_toBottomOf="@+id/bu0" />
-
-    <Button
-        android:id="@+id/bu3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="3"
-        android:textColor="#333377"
-        android:textSize="60sp"
-        app:backgroundTint="#BEC8EF"
-        app:layout_constraintStart_toEndOf="@+id/bu2"
+        app:layout_constraintEnd_toStartOf="@+id/bu2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
     <Button
-        android:id="@+id/bu8"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="8"
-        android:textColor="#333377"
-        android:textSize="60sp"
-        app:backgroundTint="#BEC8EF"
-        app:layout_constraintStart_toEndOf="@+id/bu7"
-        app:layout_constraintTop_toBottomOf="@+id/bu3" />
-
-    <Button
+        android:onClick="onClickBu2"
         android:id="@+id/bu2"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -191,21 +136,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
     <Button
-        android:id="@+id/bu7"
+        android:onClick="onClickBu3"
+        android:id="@+id/bu3"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="7"
+        android:text="3"
         android:textColor="#333377"
         android:textSize="60sp"
         app:backgroundTint="#BEC8EF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bu2" />
-
+        app:layout_constraintStart_toEndOf="@+id/bu2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
     <Button
+        android:onClick="onClickBu4"
         android:id="@+id/bu4"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -217,8 +162,60 @@
         app:backgroundTint="#BEC8EF"
         app:layout_constraintStart_toEndOf="@+id/bu3"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
     <Button
+        android:onClick="onClickBu5"
+        android:id="@+id/bu5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="5"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toStartOf="@+id/bu6"
+        app:layout_constraintTop_toBottomOf="@+id/bu0" />
+    <Button
+        android:onClick="onClickBu6"
+        android:id="@+id/bu6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="6"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toStartOf="@+id/bu7"
+        app:layout_constraintTop_toBottomOf="@+id/bu1" />
+    <Button
+        android:onClick="onClickBu7"
+        android:id="@+id/bu7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:text="7"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bu2" />
+    <Button
+        android:onClick="onClickBu8"
+        android:id="@+id/bu8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="8"
+        android:textColor="#333377"
+        android:textSize="60sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintStart_toEndOf="@+id/bu7"
+        app:layout_constraintTop_toBottomOf="@+id/bu3" />
+    <Button
+        android:onClick="onClickBu9"
         android:id="@+id/bu9"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -232,6 +229,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bu4" />
 
     <Button
+        android:onClick="onClickBuDelete"
         android:id="@+id/buDelete"
         android:layout_width="245dp"
         android:layout_height="82dp"
@@ -249,6 +247,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
+        android:onClick="onClickBuAllClear"
         android:id="@+id/buAllClear"
         android:layout_width="245dp"
         android:layout_height="82dp"
@@ -267,31 +266,53 @@
 
     <TextView
         android:id="@+id/textJudge"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-70dp"
-        android:elevation="1dp"
+        android:onClick="onClickTextJudge"
+        android:layout_width="390dp"
+        android:layout_height="390dp"
+        android:elevation="3dp"
         android:gravity="center"
-        android:text=""
-        android:textSize="320dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1029dp" />
 
     <TextView
         android:id="@+id/textTap"
-        android:layout_width="500dp"
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:elevation="1dp"
         android:gravity="center"
         android:text="タップしてつぎへ"
         android:textColor="@color/red"
-        android:textSize="50dp"
+        android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textJudge"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewMaru"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewMaru"
+        android:layout_width="370dp"
+        android:layout_height="370dp"
+        android:layout_marginTop="10dp"
+        android:elevation="2dp"
+        android:paddingBottom="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/maru" />
+
+    <ImageView
+        android:id="@+id/imageViewBatsu"
+        android:layout_width="370dp"
+        android:layout_height="370dp"
+        android:layout_marginTop="10dp"
+        android:elevation="2dp"
+        android:paddingBottom="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/batsu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
