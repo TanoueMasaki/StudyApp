@@ -101,9 +101,6 @@
 
     </LinearLayout>
 
-    <!--○×表示用-->
-    <!--Z軸の指定-->
-
     <Button
         android:id="@+id/bu1"
         android:layout_width="100dp"
@@ -268,7 +265,31 @@
         app:layout_constraintTop_toBottomOf="@+id/bu7"
         app:layout_constraintVertical_bias="0.0" />
 
-    <!--ライン-->
+    <TextView
+        android:id="@+id/textJudge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:text=""
+        android:textSize="250dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textTap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:text="タップしてつぎへ"
+        android:textColor="@color/red"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
