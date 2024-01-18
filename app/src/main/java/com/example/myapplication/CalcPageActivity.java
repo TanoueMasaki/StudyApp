@@ -36,7 +36,6 @@ public class CalcPageActivity extends AppCompatActivity{
     private ArrayList<Integer> questions;//問題作成用配列
     String[] currentResults;
     List<String[]> results;
-    List<String> results2;
     TextView leftValueText;
     TextView rightValueText;
     TextView answerText;
@@ -135,9 +134,6 @@ public class CalcPageActivity extends AppCompatActivity{
     public int getQuestionSize(){
         return this.questions.size();
     }
-    public List<String[]> getResultsStr(){
-        return this.results;
-    }
 
     //解答を全削除
     public void clearAnswerStr(){
@@ -217,7 +213,6 @@ public class CalcPageActivity extends AppCompatActivity{
     public void onClickJudgment(View view) {
         currentResults = new String[7];
         results = new ArrayList<>();
-        results2 = new ArrayList<>();
 
         bu0.setVisibility(View.INVISIBLE);
         bu1.setVisibility(View.INVISIBLE);
@@ -260,16 +255,26 @@ public class CalcPageActivity extends AppCompatActivity{
         currentResults[5] = String.valueOf(answerCalc);//正解
         currentResults[6] = String.valueOf(answer);//入力した解答
 
-        //現在の問題の結果を","区切りで１つの文字列してcurrentResultに代入
-        String currentResult = String.join(",", currentResults);
         //問題終了時のResult画面に表示する用に今回分の問題すべてをListに格納する
         this.setResults(currentResults);
-        this.results2.add(currentResult);
+
+        //現在の問題の結果を","区切りで１つの文字列してcurrentResultに代入
+        String currentResult = String.join(",", currentResults);
+        String thisResults = currentResults[2] + "問目   ";
+        thisResults += currentResults[3] + "   ";
+        thisResults += currentResults[4] + "   ";
+        thisResults += currentResults[5] + "   ";
+        thisResults += currentResults[6];
+
+        //String thisResult = String.join(",", getThisResults());
         //次回以降にも結果を閲覧できる用に内部ストレージに保存しておく
         try{
-            FileOutputStream fileOutputstream = openFileOutput("results.csv", MODE_APPEND);
-            fileOutputstream.write(currentResult.getBytes());
-            fileOutputstream.write('\n');
+            FileOutputStream fileOutputstreamCr = openFileOutput("results.csv", MODE_APPEND);
+            fileOutputstreamCr.write(currentResult.getBytes());
+            fileOutputstreamCr.write('\n');
+            FileOutputStream fileOutputstreamTh = openFileOutput("thisResults.txt", MODE_APPEND);
+            fileOutputstreamTh.write(thisResults.getBytes());
+            fileOutputstreamTh.write('\n');
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -280,13 +285,15 @@ public class CalcPageActivity extends AppCompatActivity{
 
         if(this.getRightCount() + 1 == questions.size() &&
                 this.getLeftCount() + 1 == questions.size()) {
+
             Intent intentTest = new Intent(CalcPageActivity.this, ResultActivity.class);
             startActivity(intentTest);
-            //両辺とも最大値になったら終了
-            //ダイアログに結果を表示して終了（終了はダイアログから呼び出す）
-//            DialogFragment dialogFragment = new MyDialogFragment("解答結果", this.getResultsStr());
-//            dialogFragment.setCancelable(false);
-//            dialogFragment.show(getSupportFragmentManager(), "my_dialog");
+            try {
+                FileOutputStream fileOutputstreamTh = openFileOutput("thisResults.txt", MODE_PRIVATE);
+                fileOutputstreamTh.write(null);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
         }else{
             //各ボタンの再表示
