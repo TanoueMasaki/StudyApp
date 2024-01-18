@@ -12,31 +12,27 @@ import java.util.Locale;
 
 public class ResultActivity extends AppCompatActivity {
 
-    private final String[] dataset = new String[20];
+    //配列を用意（あとでresultに替える）
+    private final String[] dataset = {"1","2","3","4","5","6"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        //リスナー登録①
         RecyclerView recyclerView = findViewById(R.id.my_recycler_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
+        //RecyclerViewのサイズの固定
         recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
+        //リサイクルビューのlinearlayoutManagerを使う
         RecyclerView.LayoutManager rLayoutManager = new LinearLayoutManager(this);
-
+        //①のrecyclerViewにlinearlayoutManagerをセットする
         recyclerView.setLayoutManager(rLayoutManager);
 
-        int i = 0;
-        while (i < 20) {
-            dataset[i] = String.format(Locale.ENGLISH, "Data_0%d", i);
-            i++;
-        }
-
+        //自作したアダプターを使う（コンストラクタで配列を渡す）
         MyAdapter adapter = new MyAdapter(dataset);
+        //①のrecyclerViewにアダプターをセットする
         recyclerView.setAdapter(adapter);
     }
 }
