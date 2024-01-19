@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
     <!--activity_result-->
-    <string name="resultTitle">This Time Results</string>
+    <string name="resultTitle">今回の結果は</string>
 </resources>

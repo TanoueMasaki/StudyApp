@@ -31,7 +31,7 @@ public class ResultActivity extends AppCompatActivity {
             BufferedReader reader = new BufferedReader( new InputStreamReader( in , "UTF-8") );
             String tmp;
             while( (tmp = reader.readLine()) != null ){
-                dataset.add(tmp + "\n");
+                dataset.add(tmp);
             }
             reader.close();
         }catch( IOException e ){

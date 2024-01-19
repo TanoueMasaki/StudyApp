@@ -157,6 +157,14 @@ public class CalcPageActivity extends AppCompatActivity{
         this.setOpeInt(getIntent().getIntExtra("OPE", 0));
         opeStr = getIntent().getStringExtra(("OPE_STR"));
 
+        //前回結果を初期化
+        try {
+            FileOutputStream fileOutputstreamTh = openFileOutput("thisResults.txt", MODE_PRIVATE);
+            fileOutputstreamTh.write(null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         //クラスのインスタンス化
         calculation = new Calculation();
 
@@ -262,8 +270,8 @@ public class CalcPageActivity extends AppCompatActivity{
         String currentResult = String.join(",", currentResults);
         String thisResults = currentResults[2] + "問目   ";
         thisResults += currentResults[3] + "   ";
-        thisResults += currentResults[4] + "   ";
-        thisResults += currentResults[5] + "   ";
+        thisResults += currentResults[4] + "=";
+        thisResults += currentResults[5] + "   :   ";
         thisResults += currentResults[6];
 
         //String thisResult = String.join(",", getThisResults());
@@ -288,12 +296,6 @@ public class CalcPageActivity extends AppCompatActivity{
 
             Intent intentTest = new Intent(CalcPageActivity.this, ResultActivity.class);
             startActivity(intentTest);
-            try {
-                FileOutputStream fileOutputstreamTh = openFileOutput("thisResults.txt", MODE_PRIVATE);
-                fileOutputstreamTh.write(null);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
 
         }else{
             //各ボタンの再表示
