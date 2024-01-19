@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">My Application</string>
-    <!--activity_result-->
-    <string name="resultTitle">今回の結果は</string>
-</resources>

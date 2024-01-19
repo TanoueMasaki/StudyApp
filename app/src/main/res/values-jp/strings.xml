@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <!--activity_result-->
+    <string name="resultTitle">今回の結果は</string>
+    <string name="item1">No</string>
+    <string name="item2">正誤</string>
+    <string name="item3">問題</string>
+    <string name="item4">答え</string>
+    <string name="item5">入力した答え</string>
+</resources>

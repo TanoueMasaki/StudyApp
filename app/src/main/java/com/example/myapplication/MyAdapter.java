@@ -9,11 +9,13 @@ import android.widget.TextView;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private final List<String> localDataSet;
+    private final List<String[]> localDataSet;
+    private int arrayNum;
 
     //コンストラクタで配列を受け取ってセット
-    public MyAdapter(List<String> dataSet) {
-        localDataSet = dataSet;
+    public MyAdapter(List<String[]> dataSet,int num) {
+        this.localDataSet = dataSet;
+        this.arrayNum = num;
     }
     @NonNull
     @Override
@@ -24,7 +26,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        viewHolder.getTextView().setText(localDataSet.get(position));
+        viewHolder.getTextView().setText(localDataSet.get(arrayNum)[position]);
     }
 
     //アイテムの数を決める

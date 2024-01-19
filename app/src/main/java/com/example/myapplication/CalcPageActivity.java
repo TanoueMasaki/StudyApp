@@ -268,10 +268,11 @@ public class CalcPageActivity extends AppCompatActivity{
 
         //現在の問題の結果を","区切りで１つの文字列してcurrentResultに代入
         String currentResult = String.join(",", currentResults);
-        String thisResults = currentResults[2] + "問目   ";
-        thisResults += currentResults[3] + "   ";
+        //今回結果を","区切りで１つの文字列してthisResultsに代入
+        String thisResults = currentResults[2] + "問目,";
+        thisResults += currentResults[3] + ",";
         thisResults += currentResults[4] + "=";
-        thisResults += currentResults[5] + "   :   ";
+        thisResults += currentResults[5] + ",";
         thisResults += currentResults[6];
 
         //String thisResult = String.join(",", getThisResults());
