@@ -4,7 +4,7 @@
     <string name="resultTitle">This Time Result</string>
     <string name="item1">No</string>
     <string name="item2">judge</string>
-    <string name="item3">question</string>
-    <string name="item4">answer</string>
-    <string name="item5">input</string>
+    <string name="item3">question/answer</string>
+    <string name="item4">input</string>
+    <string name="btn1">finish</string>
 </resources>

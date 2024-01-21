@@ -10,6 +10,9 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -62,6 +65,7 @@ public class CalcPageActivity extends AppCompatActivity{
     LocalDate date;
     LocalTime time;
     Calculation calculation;
+    MediaPlayer mp;
 
     //セッター
     public void setInitialVal(int value){
@@ -215,6 +219,10 @@ public class CalcPageActivity extends AppCompatActivity{
         this.setRightValue(questions.get(getRightCount()));
         String rightValueStr = String.valueOf(this.getRightValue());
         rightValueText.setText(rightValueStr);
+
+        mp = MediaPlayer.create( this, R.raw.pinpon );
+        SoundPool sp = new SoundPool( 1, AudioManager.STREAM_MUSIC, 0 );
+
     }
 
     //判定ボタンが押されたら
@@ -249,6 +257,10 @@ public class CalcPageActivity extends AppCompatActivity{
         );
         //正誤判定後、結果を配列に入れる
         if (answerCalc == answer) {
+            try{
+                mp.prepare();
+            }catch( Exception e ){ }
+            mp.start();
             maru.setVisibility(View.VISIBLE);
             currentResults[3] = "正解";
         } else {
@@ -273,7 +285,7 @@ public class CalcPageActivity extends AppCompatActivity{
         thisResults += currentResults[3] + ",";
         thisResults += currentResults[4] + "=";
         thisResults += currentResults[5] + ",";
-        thisResults += currentResults[6];
+        thisResults += currentResults[6] + ",";
 
         //String thisResult = String.join(",", getThisResults());
         //次回以降にも結果を閲覧できる用に内部ストレージに保存しておく
@@ -283,7 +295,6 @@ public class CalcPageActivity extends AppCompatActivity{
             fileOutputstreamCr.write('\n');
             FileOutputStream fileOutputstreamTh = openFileOutput("thisResults.txt", MODE_APPEND);
             fileOutputstreamTh.write(thisResults.getBytes());
-            fileOutputstreamTh.write('\n');
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -423,5 +434,13 @@ public class CalcPageActivity extends AppCompatActivity{
     public void onClickBuAllClear(View view) {
         this.clearAnswerStr();
         answerText.setText(this.getAnswerStr());
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        mp.release();
+        this.finish();
     }
 }
