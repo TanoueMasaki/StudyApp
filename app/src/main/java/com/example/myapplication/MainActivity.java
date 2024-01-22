@@ -8,11 +8,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     //フィールド定義
     private Operator ope;
+    private int initialValInt;
+    private int finalValInt;
     Button buAddition;
     Button buSubtraction;
     Button buMultiplication;
@@ -43,9 +47,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void setOpe(Operator ope){
         this.ope = ope;
     }
+    public void setInitialValInt(int val){
+        this.initialValInt = val;
+    }
+    public void setFinalValInt(int val){
+        this.finalValInt = val;
+    }
+    public void setIniValFinVal(int ini,int fin){
+        this.initialValInt = ini;
+        this.finalValInt = fin;
+    }
+
     //ゲッター
     public Operator getOpe(){
         return this.ope;
+    }
+    public int getInitialValInt(){
+        return this.initialValInt;
+    }
+    public int getFinalValInt(){
+        return this.finalValInt;
     }
 
     @Override
@@ -138,25 +159,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //initialValを取得してフィールドに代入
-                Spinner initialVal = findViewById(R.id.leftSpinner);
-                String initialValStr = (String) initialVal.getSelectedItem();
-                int initialValInt = Integer.parseInt(initialValStr);
 
-                //finalValを取得してフィールドに代入
-                Spinner finalVal = findViewById(R.id.rightSpinner);
-                String finalValStr = (String) finalVal.getSelectedItem();
-                int finalValInt = Integer.parseInt(finalValStr);
+                if(getOpe() == null ){
+                    Toast.makeText(getApplicationContext(), "けいさん方法をえらんでね", Toast.LENGTH_LONG).show();
+                }else {
+                    Spinner initialVal = findViewById(R.id.leftSpinner);
+                    String initialValStr = (String) initialVal.getSelectedItem();
+                    setInitialValInt(Integer.parseInt(initialValStr));
+                    Spinner finalVal = findViewById(R.id.rightSpinner);
+                    String finalValStr = (String) finalVal.getSelectedItem();
+                    setFinalValInt(Integer.parseInt(finalValStr));
 
-                //CalcPageActivity遷移用のIntentをインスタンス化
-                Intent intentCalcPage = new Intent(MainActivity.this, CalcPageActivity.class);
-                //CalcPageActivityにデータを渡す
-                intentCalcPage.putExtra("OPE",MainActivity.this.getOpe().ordinal());
-                intentCalcPage.putExtra("OPE_STR",MainActivity.this.getOpe().getValue());
-                intentCalcPage.putExtra("INITIAL",initialValInt);
-                intentCalcPage.putExtra("FINAL",finalValInt);
-                //アクティビティスタート
-                startActivity(intentCalcPage);
+                    startCalc();
+                }
             }
         });
 
@@ -191,17 +206,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             MainActivity.this.setOpe(Operator.DIVISION);
             buttonSetColor(buDivision);
 
-            //"Addition"を含んでいるなら
+        //"Addition"を含んでいるなら
         }else if(idStr.contains("Addition")) {
             Log.d("VALUE",idStr);
             MainActivity.this.setOpe(Operator.ADDITION);
 
             if(id == R.id.btnAddition1) {
                 buttonSetColor(btnAddition1);
+                setIniValFinVal(1,5);
+                startCalc();
             }else if(id == R.id.btnAddition2) {
                 buttonSetColor(btnAddition2);
+                setIniValFinVal(6,10);
+                startCalc();
+            }else if(id == R.id.btnAddition3) {
+                buttonSetColor(btnAddition3);
+                setIniValFinVal(11,15);
+                startCalc();
+            }else if(id == R.id.btnAddition4) {
+                buttonSetColor(btnAddition4);
+                setIniValFinVal(16,20);
+                startCalc();
+            }else if(id == R.id.btnAddition5) {
+                buttonSetColor(btnAddition5);
+                setIniValFinVal(21,25);
+                startCalc();
+            }else if(id == R.id.btnAddition6) {
+                buttonSetColor(btnAddition6);
+                setIniValFinVal(26,30);
+                startCalc();
+            }else if(id == R.id.btnAddition7) {
+                buttonSetColor(btnAddition7);
+                setIniValFinVal(31,35);
+                startCalc();
+            }else if(id == R.id.btnAddition8) {
+                buttonSetColor(btnAddition8);
+                setIniValFinVal(36,40);
+                startCalc();
+            }else if(id == R.id.btnAddition9) {
+                buttonSetColor(btnAddition9);
+                setIniValFinVal(41,45);
+                startCalc();
+            }else if(id == R.id.btnAddition10) {
+                buttonSetColor(btnAddition10);
+                setIniValFinVal(46,50);
+                startCalc();
             }
-            //"Addition"を含んでいるなら
+
+        //"Subtraction"を含んでいるなら
         }else if(idStr.contains("Subtraction")) {
             Log.d("VALUE",idStr);
             MainActivity.this.setOpe(Operator.SUBTRACTION);
@@ -210,6 +262,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 buttonSetColor(btnSubtraction1);
             }else if(id == R.id.btnSubtraction2) {
                 buttonSetColor(btnSubtraction2);
+            }else if(id == R.id.btnSubtraction3) {
+                buttonSetColor(btnSubtraction3);
+            }else if(id == R.id.btnSubtraction4) {
+                buttonSetColor(btnSubtraction4);
+            }else if(id == R.id.btnSubtraction5) {
+                buttonSetColor(btnSubtraction5);
+            }else if(id == R.id.btnSubtraction6) {
+                buttonSetColor(btnSubtraction6);
+            }else if(id == R.id.btnSubtraction7) {
+                buttonSetColor(btnSubtraction7);
+            }else if(id == R.id.btnSubtraction8) {
+                buttonSetColor(btnSubtraction8);
+            }else if(id == R.id.btnSubtraction9) {
+                buttonSetColor(btnSubtraction9);
+            }else if(id == R.id.btnSubtraction10) {
+                buttonSetColor(btnSubtraction10);
             }
         }
     }
@@ -241,5 +309,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSubtraction10.setBackgroundColor(Color.parseColor("#A37DFD"));
 
         button.setBackgroundColor(Color.parseColor("#F441B9"));
+    }
+    public void startCalc(){
+        //CalcPageActivity遷移用のIntentをインスタンス化
+        Intent intentCalcPage = new Intent(MainActivity.this, CalcPageActivity.class);
+        //CalcPageActivityにデータを渡す
+        intentCalcPage.putExtra("OPE", MainActivity.this.getOpe().ordinal());
+        intentCalcPage.putExtra("OPE_STR", MainActivity.this.getOpe().getValue());
+        intentCalcPage.putExtra("INITIAL", getInitialValInt());
+        intentCalcPage.putExtra("FINAL", getFinalValInt());
+        //アクティビティスタート
+        startActivity(intentCalcPage);
     }
 }

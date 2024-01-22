@@ -1,6 +1,5 @@
 package com.example.myapplication;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioAttributes;
 import android.media.AudioFormat;
@@ -9,7 +8,6 @@ import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -20,7 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 
-public class TestActivity extends Activity {
+public class UseAudio extends Activity{
 
     // hello_world.wav のサンプリングレート
     private static final int SamplingRate = 88000;
@@ -28,44 +26,8 @@ public class TestActivity extends Activity {
     //
     private MediaPlayer mediaPlayer;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
 
-        UseAudio useAudio = new UseAudio();
-
-//        Button button = findViewById(R.id.button);
-//        button.setOnClickListener(v-> wavPlay(R.raw.pinpon));
-//        Button button = findViewById(R.id.button);
-//        button.setOnClickListener(v-> wavPlay(R.raw.boo));
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View view) {
-                useAudio.wavPlay(R.raw.boo);
-            }
-        });
-
-
-
-        Button buttonStart = findViewById(R.id.button1);
-        buttonStart.setOnClickListener( v ->  {
-            // 音楽再生
-            audioPlay();
-        });
-        // 音楽停止ボタン
-        Button buttonStop = findViewById(R.id.button2);
-        buttonStop.setOnClickListener( v -> {
-            if (mediaPlayer != null) {
-                // 音楽停止
-                audioStop();
-            }
-        });
-
-    }
-
-    private void wavPlay(@RawRes int id) {
+    public void wavPlay(@RawRes int id) {
         InputStream input = null;
         byte[] wavData = null;
 
@@ -91,9 +53,8 @@ public class TestActivity extends Activity {
                 e.printStackTrace();
             }
         }
-
         // バッファサイズの計算
-        int bufSize = android.media.AudioTrack.getMinBufferSize(
+        int bufSize = AudioTrack.getMinBufferSize(
                 SamplingRate,
                 AudioFormat.CHANNEL_OUT_MONO,
                 AudioFormat.ENCODING_PCM_16BIT);

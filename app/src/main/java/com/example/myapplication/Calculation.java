@@ -4,6 +4,8 @@ package com.example.myapplication;
 import com.example.myapplication.Operator;
 
 import java.util.ArrayList;
+import java.util.List;
+
 //計算用クラス
 public class Calculation {
 
@@ -29,8 +31,8 @@ public class Calculation {
     }
    
     //引数（初期値から最終値）までが入った配列ArrayList型arrayを作成して返す
-    public ArrayList<Integer> arraySet(int initialVal,int finalVal) {
-    	ArrayList<Integer> array = new ArrayList<>();
+    public List<Integer> arraySet(int initialVal,int finalVal) {
+    	List<Integer> array = new ArrayList<>();
     	for(int i = initialVal;i <= finalVal;i++) {
     		array.add(i);
     	}
