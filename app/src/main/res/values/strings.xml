@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Calculation skills Up</string>
     <!--activity_result-->
     <string name="resultTitle">This Time Result</string>
     <string name="item1">No</string>
@@ -7,4 +7,21 @@
     <string name="item3">question/answer</string>
     <string name="item4">input</string>
     <string name="btn1">finish</string>
+    <!--activity_main-->
+    <string name="addition">ADDITION(+)</string>
+    <string name="subtraction">SUBTRACTION(-)</string>
+    <string name="multiplication">MULTIPLICATION(×)</string>
+    <string name="division">DIVISION(÷)</string>
+    <string name="level1">Level1</string>
+    <string name="level2">Level2</string>
+    <string name="level3">Level3</string>
+    <string name="level4">Level4</string>
+    <string name="level5">Level5</string>
+    <string name="level6">Level6</string>
+    <string name="level7">Level7</string>
+    <string name="level8">Level8</string>
+    <string name="level9">Level9</string>
+    <string name="level10">Level10</string>
+    <string name="start">Start</string>
+    <string name="custom">Custom</string>
 </resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">けいさんスキルアップ</string>
     <!--activity_result-->
     <string name="resultTitle">今回の結果は</string>
     <string name="item1">No</string>
@@ -7,4 +7,21 @@
     <string name="item3">問題/答え</string>
     <string name="item4">入力した答え</string>
     <string name="btn1">終了する</string>
+    <!--activity_main-->
+    <string name="addition">たし算(+)</string>
+    <string name="subtraction">ひき算(-)</string>
+    <string name="multiplication">かけ算(×)</string>
+    <string name="division">わり算(÷)</string>
+    <string name="level1">レベル1</string>
+    <string name="level2">レベル2</string>
+    <string name="level3">レベル3</string>
+    <string name="level4">レベル4</string>
+    <string name="level5">レベル5</string>
+    <string name="level6">レベル6</string>
+    <string name="level7">レベル7</string>
+    <string name="level8">レベル8</string>
+    <string name="level9">レベル9</string>
+    <string name="level10">レベル10</string>
+    <string name="start">スタート</string>
+    <string name="custom">カスタム</string>
 </resources>
