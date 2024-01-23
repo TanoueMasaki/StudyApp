@@ -24,4 +24,7 @@
     <string name="level10">Level10</string>
     <string name="start">Start</string>
     <string name="custom">Custom</string>
+    <string name="comingSoon">Coming Soon</string>
+
+
 </resources>

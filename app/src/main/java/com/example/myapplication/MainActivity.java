@@ -41,6 +41,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnSubtraction8;
     Button btnSubtraction9;
     Button btnSubtraction10;
+    Button btnMultiplication1;
+    Button btnMultiplication2;
+    Button btnMultiplication3;
+    Button btnMultiplication4;
+    Button btnMultiplication5;
+    Button btnMultiplication6;
+    Button btnMultiplication7;
+    Button btnMultiplication8;
+    Button btnMultiplication9;
+    Button btnMultiplication10;
+    Button btnDivision1;
+    Button btnDivision2;
+    Button btnDivision3;
+    Button btnDivision4;
+    Button btnDivision5;
+    Button btnDivision6;
+    Button btnDivision7;
+    Button btnDivision8;
+    Button btnDivision9;
+    Button btnDivision10;
+    Spinner leftSpinner;
+    Spinner rightSpinner;
 
 
     //セッター
@@ -79,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 100; i++) {
             leftArray[i] = String.valueOf(i + 1);
         }
-        Spinner leftSpinner = findViewById(R.id.leftSpinner);
+        leftSpinner = findViewById(R.id.leftSpinner);
         ArrayAdapter<String> leftAdapter
                 = new ArrayAdapter<>(this,
                 R.layout.spinner_item, leftArray);
@@ -91,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 100; i++) {
             rightArray[i] = String.valueOf(i + 1);
         }
-        Spinner rightSpinner = findViewById(R.id.rightSpinner);
+        rightSpinner = findViewById(R.id.rightSpinner);
         ArrayAdapter<String> rightAdapter
                 = new ArrayAdapter<>(this,
                 R.layout.spinner_item, rightArray);
@@ -125,6 +147,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSubtraction8 = findViewById(R.id.btnSubtraction8);
         btnSubtraction9 = findViewById(R.id.btnSubtraction9);
         btnSubtraction10 = findViewById(R.id.btnSubtraction10);
+        btnMultiplication1 = findViewById(R.id.btnMultiplication1);
+        btnMultiplication2 = findViewById(R.id.btnMultiplication2);
+        btnMultiplication3 = findViewById(R.id.btnMultiplication3);
+        btnMultiplication4 = findViewById(R.id.btnMultiplication4);
+        btnMultiplication5 = findViewById(R.id.btnMultiplication5);
+        btnMultiplication6 = findViewById(R.id.btnMultiplication6);
+        btnMultiplication7 = findViewById(R.id.btnMultiplication7);
+        btnMultiplication8 = findViewById(R.id.btnMultiplication8);
+        btnMultiplication9 = findViewById(R.id.btnMultiplication9);
+        btnMultiplication10 = findViewById(R.id.btnMultiplication10);
+        btnDivision1 = findViewById(R.id.btnDivision1);
+        btnDivision2 = findViewById(R.id.btnDivision2);
+        btnDivision3 = findViewById(R.id.btnDivision3);
+        btnDivision4 = findViewById(R.id.btnDivision4);
+        btnDivision5 = findViewById(R.id.btnDivision5);
+        btnDivision6 = findViewById(R.id.btnDivision6);
+        btnDivision7 = findViewById(R.id.btnDivision7);
+        btnDivision8 = findViewById(R.id.btnDivision8);
+        btnDivision9 = findViewById(R.id.btnDivision9);
+        btnDivision10 = findViewById(R.id.btnDivision10);
+
+
 
         //各レベルボタンが押されたら
         btnAddition1.setOnClickListener(this);
@@ -147,6 +191,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSubtraction8.setOnClickListener(this);
         btnSubtraction9.setOnClickListener(this);
         btnSubtraction10.setOnClickListener(this);
+        btnMultiplication1.setOnClickListener(this);
+        btnMultiplication2.setOnClickListener(this);
+        btnMultiplication3.setOnClickListener(this);
+        btnMultiplication4.setOnClickListener(this);
+        btnMultiplication5.setOnClickListener(this);
+        btnMultiplication6.setOnClickListener(this);
+        btnMultiplication7.setOnClickListener(this);
+        btnMultiplication8.setOnClickListener(this);
+        btnMultiplication9.setOnClickListener(this);
+        btnMultiplication10.setOnClickListener(this);
+        btnDivision1.setOnClickListener(this);
+        btnDivision2.setOnClickListener(this);
+        btnDivision3.setOnClickListener(this);
+        btnDivision4.setOnClickListener(this);
+        btnDivision5.setOnClickListener(this);
+        btnDivision6.setOnClickListener(this);
+        btnDivision7.setOnClickListener(this);
+        btnDivision8.setOnClickListener(this);
+        btnDivision9.setOnClickListener(this);
+        btnDivision10.setOnClickListener(this);
+
+        //いったん無効化
+        btnDivision1.setEnabled(false);
+        btnDivision2.setEnabled(false);
+        btnDivision3.setEnabled(false);
+        btnDivision4.setEnabled(false);
+        btnDivision5.setEnabled(false);
+        btnDivision6.setEnabled(false);
+        btnDivision7.setEnabled(false);
+        btnDivision8.setEnabled(false);
+        btnDivision9.setEnabled(false);
+        btnDivision10.setEnabled(false);
+        buDivision.setEnabled(false);
 
         //カスタムの演算子ボタンが押されたら
         buAddition.setOnClickListener(this);
@@ -193,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //idをidの名前のまま文字列で取得
         String idStr = getResources().getResourceEntryName(view.getId());
 
+        //カスタムの演算子ボタン
         if(id == R.id.buAddition){
             MainActivity.this.setOpe(Operator.ADDITION);
             buttonSetColor(buAddition);
@@ -206,11 +284,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             MainActivity.this.setOpe(Operator.DIVISION);
             buttonSetColor(buDivision);
 
-        //"Addition"を含んでいるなら
+        //各レベルボタン
+        //idに"Addition"を含んでいるなら
         }else if(idStr.contains("Addition")) {
             Log.d("VALUE",idStr);
             MainActivity.this.setOpe(Operator.ADDITION);
-
+            //各レベル
             if(id == R.id.btnAddition1) {
                 buttonSetColor(btnAddition1);
                 setIniValFinVal(1,5);
@@ -252,7 +331,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setIniValFinVal(46,50);
                 startCalc();
             }
-
         //"Subtraction"を含んでいるなら
         }else if(idStr.contains("Subtraction")) {
             Log.d("VALUE",idStr);
@@ -260,28 +338,144 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if(id == R.id.btnSubtraction1) {
                 buttonSetColor(btnSubtraction1);
+                setIniValFinVal(1,5);
+                startCalc();
             }else if(id == R.id.btnSubtraction2) {
                 buttonSetColor(btnSubtraction2);
+                setIniValFinVal(6,10);
+                startCalc();
             }else if(id == R.id.btnSubtraction3) {
                 buttonSetColor(btnSubtraction3);
+                setIniValFinVal(11,15);
+                startCalc();
             }else if(id == R.id.btnSubtraction4) {
                 buttonSetColor(btnSubtraction4);
+                setIniValFinVal(16,20);
+                startCalc();
             }else if(id == R.id.btnSubtraction5) {
                 buttonSetColor(btnSubtraction5);
+                setIniValFinVal(21,25);
+                startCalc();
             }else if(id == R.id.btnSubtraction6) {
                 buttonSetColor(btnSubtraction6);
+                setIniValFinVal(26,30);
+                startCalc();
             }else if(id == R.id.btnSubtraction7) {
                 buttonSetColor(btnSubtraction7);
+                setIniValFinVal(31,35);
+                startCalc();
             }else if(id == R.id.btnSubtraction8) {
                 buttonSetColor(btnSubtraction8);
+                setIniValFinVal(36,40);
+                startCalc();
             }else if(id == R.id.btnSubtraction9) {
                 buttonSetColor(btnSubtraction9);
+                setIniValFinVal(41,45);
+                startCalc();
             }else if(id == R.id.btnSubtraction10) {
                 buttonSetColor(btnSubtraction10);
+                setIniValFinVal(46,50);
+                startCalc();
+            }
+        //"Multiplication"を含んでいるなら
+        }else if(idStr.contains("Multiplication")) {
+            Log.d("VALUE", idStr);
+            MainActivity.this.setOpe(Operator.MULTIPLICATION);
+
+            if (id == R.id.btnMultiplication1) {
+                buttonSetColor(btnMultiplication1);
+                setIniValFinVal(1, 5);
+                startCalc();
+            } else if (id == R.id.btnMultiplication2) {
+                buttonSetColor(btnMultiplication2);
+                setIniValFinVal(6, 10);
+                startCalc();
+            } else if (id == R.id.btnMultiplication3) {
+                buttonSetColor(btnMultiplication3);
+                setIniValFinVal(11, 15);
+                startCalc();
+            } else if (id == R.id.btnMultiplication4) {
+                buttonSetColor(btnMultiplication4);
+                setIniValFinVal(16, 20);
+                startCalc();
+            } else if (id == R.id.btnMultiplication5) {
+                buttonSetColor(btnMultiplication5);
+                setIniValFinVal(21, 25);
+                startCalc();
+            } else if (id == R.id.btnMultiplication6) {
+                buttonSetColor(btnMultiplication6);
+                setIniValFinVal(26, 30);
+                startCalc();
+            } else if (id == R.id.btnMultiplication7) {
+                buttonSetColor(btnMultiplication7);
+                setIniValFinVal(31, 35);
+                startCalc();
+            } else if (id == R.id.btnMultiplication8) {
+                buttonSetColor(btnMultiplication8);
+                setIniValFinVal(36, 40);
+                startCalc();
+            } else if (id == R.id.btnMultiplication9) {
+                buttonSetColor(btnMultiplication9);
+                setIniValFinVal(41, 45);
+                startCalc();
+            } else if (id == R.id.btnMultiplication10) {
+                buttonSetColor(btnMultiplication10);
+                setIniValFinVal(46, 50);
+                startCalc();
+            }
+        //"Division"を含んでいるなら
+        } else if (idStr.contains("Division")) {
+            Log.d("VALUE", idStr);
+            MainActivity.this.setOpe(Operator.DIVISION);
+
+            if (id == R.id.btnDivision1) {
+                buttonSetColor(btnDivision1);
+                setIniValFinVal(1, 5);
+//                    startCalc();
+            } else if (id == R.id.btnDivision2) {
+                buttonSetColor(btnDivision2);
+                setIniValFinVal(6, 10);
+//                    startCalc();
+            } else if (id == R.id.btnDivision3) {
+                buttonSetColor(btnDivision3);
+                setIniValFinVal(11, 15);
+//                    startCalc();
+            } else if (id == R.id.btnDivision4) {
+                buttonSetColor(btnDivision4);
+                setIniValFinVal(16, 20);
+//                    startCalc();
+            } else if (id == R.id.btnDivision5) {
+                buttonSetColor(btnDivision5);
+                setIniValFinVal(21, 25);
+//                    startCalc();
+            } else if (id == R.id.btnDivision6) {
+                buttonSetColor(btnDivision6);
+                setIniValFinVal(26, 30);
+//                    startCalc();
+            } else if (id == R.id.btnDivision7) {
+                buttonSetColor(btnDivision7);
+                setIniValFinVal(31, 35);
+//                    startCalc();
+            } else if (id == R.id.btnDivision8) {
+                buttonSetColor(btnDivision8);
+                setIniValFinVal(36, 40);
+//                    startCalc();
+            } else if (id == R.id.btnDivision9) {
+                buttonSetColor(btnDivision9);
+                setIniValFinVal(41, 45);
+//                    startCalc();
+            } else if (id == R.id.btnDivision10) {
+                buttonSetColor(btnDivision10);
+                setIniValFinVal(46, 50);
+//                    startCalc();
             }
         }
     }
     public void buttonSetColor(Button button){
+        buttonAllColorReset();
+        button.setBackgroundColor(Color.parseColor("#F441B9"));
+    }
+    public void buttonAllColorReset(){
         buAddition.setBackgroundColor(Color.parseColor("#A37DFD"));
         buSubtraction.setBackgroundColor(Color.parseColor("#A37DFD"));
         buMultiplication.setBackgroundColor(Color.parseColor("#A37DFD"));
@@ -307,8 +501,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSubtraction8.setBackgroundColor(Color.parseColor("#A37DFD"));
         btnSubtraction9.setBackgroundColor(Color.parseColor("#A37DFD"));
         btnSubtraction10.setBackgroundColor(Color.parseColor("#A37DFD"));
-
-        button.setBackgroundColor(Color.parseColor("#F441B9"));
+        btnMultiplication1.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication2.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication3.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication4.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication5.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication6.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication7.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication8.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication9.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnMultiplication10.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision1.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision2.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision3.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision4.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision5.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision6.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision7.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision8.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision9.setBackgroundColor(Color.parseColor("#A37DFD"));
+        btnDivision10.setBackgroundColor(Color.parseColor("#A37DFD"));
     }
     public void startCalc(){
         //CalcPageActivity遷移用のIntentをインスタンス化
@@ -320,5 +532,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intentCalcPage.putExtra("FINAL", getFinalValInt());
         //アクティビティスタート
         startActivity(intentCalcPage);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        leftSpinner.setSelection(0);
+        rightSpinner.setSelection(0);
+        this.setOpe(null);
+        buttonAllColorReset();
     }
 }

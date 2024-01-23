@@ -317,9 +317,7 @@ public class CalcPageActivity extends AppCompatActivity{
                 nextQuestionIncreasing();
             }
         }else if(this.getOpeInt() == 1 || this.getOpeInt() == 3){
-            if(this.getRightCount() + 1 == getQuestions().get(0) &&
-                    this.getLeftCount() + 1 == getQuestions().get(0)) {
-
+            if(this.getRightCount() == 0 && this.getLeftCount() == 0) {
                 Intent intentTest = new Intent(CalcPageActivity.this, ResultActivity.class);
                 startActivity(intentTest);
             }else {
@@ -381,13 +379,14 @@ public class CalcPageActivity extends AppCompatActivity{
         String rightValueStr;
         String leftValueStr;
 
-        if (getQuestions().get(this.getRightCount())  > getQuestions().get(0)) {
+        //RightCountが0でなければ（インデックスが０でなければ）
+        if (getRightCount() != 0) {
+            //RightCount-1して右辺を1つ減らす
             this.setRightCount(-1);
             this.setRightValue(this.questions.get(getRightCount()));
             rightValueStr = String.valueOf(this.getRightValue());
             rightValueText.setText(rightValueStr);
-        } else if (getQuestions().get(this.getRightCount()) == getQuestions().get(0) &&
-                getQuestions().get(this.getLeftCount()) > getQuestions().get(0)) {
+        } else if (getRightCount() == 0 && getLeftCount() != 0) {
             this.setLeftCount(-1);
             this.setLeftValue(this.questions.get(getLeftCount()));
             leftValueStr = String.valueOf(this.getLeftValue());
