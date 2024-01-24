@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         //左スピナーを設定
         String[] leftArray = new String[100];
         for (int i = 0; i < 100; i++) {

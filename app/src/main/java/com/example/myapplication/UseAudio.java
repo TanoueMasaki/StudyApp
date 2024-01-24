@@ -23,10 +23,7 @@ public class UseAudio extends Activity{
     // wavPlayで使うサンプリングレート
     private static final int SamplingRate = 88000;
 
-    //
-    private MediaPlayer mediaPlayer;
-
-
+    MediaPlayer mediaPlayer;
     public void wavPlay(Activity activity,@RawRes int id) {
         InputStream input = null;
         byte[] wavData = null;
@@ -78,80 +75,14 @@ public class UseAudio extends Activity{
     }
 
     //MediaPlayerを使用（BGMなどゆっくりでいいやつ）
-    private boolean audioSetup(){
-        // インタンスを生成
-        mediaPlayer = new MediaPlayer();
+    public void mediaPlay(Activity activity,@RawRes int id) {
 
-        //音楽ファイル名, あるいはパス
-        String filePath = "music.mp3";
 
-        boolean fileCheck = false;
-
-        // assetsから mp3 ファイルを読み込み
-        try(AssetFileDescriptor afdescripter = getAssets().openFd(filePath))
-        {
-            // MediaPlayerに読み込んだ音楽ファイルを指定
-            mediaPlayer.setDataSource(afdescripter.getFileDescriptor(),
-                    afdescripter.getStartOffset(),
-                    afdescripter.getLength());
-            // 音量調整を端末のボタンに任せる
-            setVolumeControlStream(AudioManager.STREAM_MUSIC);
-            mediaPlayer.prepare();
-            fileCheck = true;
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-
-        return fileCheck;
-    }
-
-    private void audioPlay() {
-
-        if (mediaPlayer == null) {
-            // audio ファイルを読出し
-            if (audioSetup()){
-                Toast.makeText(getApplication(), "Rread audio file", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(getApplication(), "Error: read audio file", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-        else{
-            // 繰り返し再生する場合
-            mediaPlayer.stop();
-            mediaPlayer.reset();
-            // リソースの解放
-            mediaPlayer.release();
-        }
-
-        // 再生する
+        mediaPlayer = MediaPlayer.create(activity,id);
+        mediaPlayer.setVolume(5.0f, 5.0f);
         mediaPlayer.start();
 
-        // 終了を検知するリスナー
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Log.d("debug","end of audio");
-                audioStop();
-            }
-        });
-        // lambda
-//        mediaPlayer.setOnCompletionListener( mp -> {
-//            Log.d("debug","end of audio");
-//            audioStop();
-//        });
-
     }
 
-    private void audioStop() {
-        // 再生終了
-        mediaPlayer.stop();
-        // リセット
-        mediaPlayer.reset();
-        // リソースの解放
-        mediaPlayer.release();
 
-        mediaPlayer = null;
-    }
 }
