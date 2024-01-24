@@ -22,11 +22,13 @@
         app:layout_constraintTop_toTopOf="parent" />
     <!--テストボタン-->
     <Button
-        android:id="@+id/buTest"
+        android:id="@+id/btnPastResu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#95A3FF"
-        android:text="テスト"
+        android:text="@string/PastResultStart"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -597,6 +599,14 @@
         </LinearLayout>
     </ScrollView>
 
+    <Button
+        android:id="@+id/btnTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:backgroundTint="#55000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

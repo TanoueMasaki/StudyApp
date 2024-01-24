@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -22,7 +25,7 @@ import java.util.Set;
 public class AllResultActivity extends AppCompatActivity {
     private String[] dataset;
     private String datasetStr = "";
-
+    MyAdapter adapter;
     RecyclerView recyclerView;
 
     @Override
@@ -35,7 +38,7 @@ public class AllResultActivity extends AppCompatActivity {
             BufferedReader reader = new BufferedReader( new InputStreamReader( in , "UTF-8") );
             String tmp;
             while( (tmp = reader.readLine()) != null ) {
-                datasetStr += tmp + ",";
+                datasetStr = tmp + "," + datasetStr;
             }
             dataset = datasetStr.split(",");
 
@@ -53,8 +56,8 @@ public class AllResultActivity extends AppCompatActivity {
         //リサイクルビューのlinearlayoutManagerを使う
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,7);
         recyclerView.setLayoutManager(gridLayoutManager);
-        MyAdapter adapter1 = new MyAdapter(dataset);
-        recyclerView.setAdapter(adapter1);
+        adapter = new MyAdapter(this,dataset);
+        recyclerView.setAdapter(adapter);
     }
 
     public void onClickButtonFinish(View view) {

@@ -20,22 +20,21 @@ import java.util.Locale;
 
 public class UseAudio extends Activity{
 
-    // hello_world.wav のサンプリングレート
+    // wavPlayで使うサンプリングレート
     private static final int SamplingRate = 88000;
 
     //
     private MediaPlayer mediaPlayer;
 
 
-    public void wavPlay(@RawRes int id) {
+    public void wavPlay(Activity activity,@RawRes int id) {
         InputStream input = null;
         byte[] wavData = null;
 
         try {
-            // wavを読み込む
-            input = getResources().openRawResource(id);
+            // wavを読み込む（引数で受け取ったidを読み込む）
+            input = activity.getResources().openRawResource(id);
             wavData = new byte[input.available()];
-
             // input.read(wavData)
             String readBytes = String.format(Locale.US, "read bytes = %d",input.read(wavData));
             // input.read(wavData)のwarning回避のためだけ
@@ -76,7 +75,6 @@ public class UseAudio extends Activity{
         // ヘッダ44byteをオミット（プツッがなくなる）44byteはヘッダ情報
         assert wavData != null;
         audioTrack.write(wavData, 44, wavData.length-44);
-
     }
 
     //MediaPlayerを使用（BGMなどゆっくりでいいやつ）

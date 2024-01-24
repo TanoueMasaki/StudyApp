@@ -2,24 +2,31 @@ package com.example.myapplication;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.NonNull;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.inappmessaging.MessagesProto;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private final String[] localDataSet;
     private int holderNum = 1;
     ViewHolder viewHolder;
+    private Activity activity;
+    MyColor myColor = new MyColor();
 
     //コンストラクタで配列を受け取ってセット
-    public MyAdapter(String[] dataSet) {
+    public MyAdapter(Activity activity,String[] dataSet) {
         this.localDataSet = dataSet;
+        this.activity = activity;
     }
-    public MyAdapter(String[] dataSet,int num) {
+    public MyAdapter(Activity activity,String[] dataSet,int num) {
         this.localDataSet = dataSet;
         this.holderNum = num;
+        this.activity = activity;
     }
     @NonNull
     @Override
@@ -39,17 +46,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.getTextView().setText(localDataSet[position]);
-        if(localDataSet[position].equals("不正解")){
-            viewHolder.getTextView().setTextColor(Color.RED);
+        String tmp = localDataSet[position];
+
+        if(tmp.equals("不正解")){
+            viewHolder.getTextView().setTextColor(myColor.getMyColor(this.activity,R.color.red));
+        }else if(tmp.equals("正解")){
+            viewHolder.getTextView().setTextColor(myColor.getMyColor(this.activity,R.color.green));
         }
     }
-
     //アイテムの数を決める
     @Override
     public int getItemCount() {
         return localDataSet.length;
     }
-
     //onBindViewHolderで使うViewHolder型を内部クラスで定義
     static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
@@ -62,5 +71,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public TextView getTextView(){
             return textView;
         }
+    }
+    //下のgetItemIdとgetItemViewTypeを入れておかないとスクロールしたときに
+    //挙動がおかしくなる（onBindViewHolderの中のsetTextColorがはちゃめちゃになる）
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 }

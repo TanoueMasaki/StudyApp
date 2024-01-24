@@ -7,6 +7,12 @@
     <string name="item3">問題/答え</string>
     <string name="item4">入力した答え</string>
     <string name="btn1">終了する</string>
+    <!--activity_all_result-->
+    <string name="item5">問題</string>
+    <string name="item6">答え</string>
+    <string name="item7">日付</string>
+    <string name="item8">時間</string>
+    <string name="allResultTitle">過去の結果</string>
     <!--activity_main-->
     <string name="addition">たし算(+)</string>
     <string name="subtraction">ひき算(-)</string>
@@ -23,6 +29,7 @@
     <string name="level9">レベル9</string>
     <string name="level10">レベル10</string>
     <string name="start">スタート</string>
+    <string name="PastResultStart">過去の結果</string>
     <string name="custom">カスタム</string>
     <string name="comingSoon">Coming Soon</string>
 </resources>

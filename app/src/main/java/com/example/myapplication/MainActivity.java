@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnDivision8;
     Button btnDivision9;
     Button btnDivision10;
+    Button btnTest;
     Spinner leftSpinner;
     Spinner rightSpinner;
 
@@ -168,8 +170,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDivision9 = findViewById(R.id.btnDivision9);
         btnDivision10 = findViewById(R.id.btnDivision10);
 
-
-
         //各レベルボタンが押されたら
         btnAddition1.setOnClickListener(this);
         btnAddition2.setOnClickListener(this);
@@ -252,13 +252,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        //テストボタンが押されたら
-        Button buTest = findViewById(R.id.buTest);
-        buTest.setOnClickListener(new View.OnClickListener() {
+        //過去の結果ボタンが押されたら
+        Button btnPastResu = findViewById(R.id.btnPastResu);
+        btnPastResu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentTest = new Intent(MainActivity.this, AllResultActivity.class);
-                startActivity(intentTest);
+                Intent intent = new Intent(MainActivity.this, AllResultActivity.class);
+                startActivity(intent);
+            }
+        });
+        //テスト用
+        Button btnTest = findViewById(R.id.btnTest);
+        btnTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TestActivity.class);
+                startActivity(intent);
             }
         });
     }

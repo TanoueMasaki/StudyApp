@@ -261,10 +261,6 @@ public class CalcPageActivity extends AppCompatActivity{
         );
         //正誤判定後、結果を配列に入れる
         if (answerCalc == answer) {
-            try{
-
-            }catch( Exception e ){ }
-
             maru.setVisibility(View.VISIBLE);
             currentResults[3] = "正解";
         } else {

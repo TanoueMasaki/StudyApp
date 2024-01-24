@@ -48,7 +48,7 @@ public class ResultActivity extends AppCompatActivity {
         //リサイクルビューのlinearlayoutManagerを使う
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,4);
         recyclerView.setLayoutManager(gridLayoutManager);
-        MyAdapter adapter1 = new MyAdapter(dataset,2);
+        MyAdapter adapter1 = new MyAdapter(this,dataset,2);
         recyclerView.setAdapter(adapter1);
     }
 
