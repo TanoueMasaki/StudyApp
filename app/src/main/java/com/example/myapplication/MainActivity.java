@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentTest = new Intent(MainActivity.this, TestActivity.class);
+                Intent intentTest = new Intent(MainActivity.this, AllResultActivity.class);
                 startActivity(intentTest);
             }
         });
