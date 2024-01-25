@@ -161,8 +161,6 @@ public class CalcPageActivity extends AppCompatActivity{
 
         useAudio = new UseAudio();
 
-
-
         //MainActivityから渡されたデータをフィールドに代入する
         this.setInitialVal(getIntent().getIntExtra("INITIAL", 0));
         this.setFinalVal(getIntent().getIntExtra("FINAL", 0));
@@ -232,7 +230,6 @@ public class CalcPageActivity extends AppCompatActivity{
         this.setRightValue(questions.get(getRightCount()));
         String rightValueStr = String.valueOf(this.getRightValue());
         rightValueText.setText(rightValueStr);
-
     }
 
     //判定ボタンが押されたら
@@ -268,11 +265,11 @@ public class CalcPageActivity extends AppCompatActivity{
         //正誤判定後、結果を配列に入れる
         if (answerCalc == answer) {
             maru.setVisibility(View.VISIBLE);
-            useAudio.wavPlay(R.raw.pinpon, AudioTrack.MODE_STATIC);
+            useAudio.wavPlay(CalcPageActivity.this,R.raw.pinpon);
             currentResults[3] = "正解";
         } else {
             batsu.setVisibility(View.VISIBLE);
-            useAudio.wavPlay(R.raw.boo, AudioTrack.MODE_STATIC);
+            useAudio.wavPlay(CalcPageActivity.this,R.raw.boo);
             currentResults[3] = "不正解";
         }
         //問題番号、問題、正解、入力した数値を配列に入れる

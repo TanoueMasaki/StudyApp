@@ -1,112 +1,124 @@
 package com.example.myapplication;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-        import android.content.Context;
-        import android.media.AudioManager;
-        import android.media.MediaPlayer;
-import android.media.PlaybackParams;
 import android.os.Bundle;
-        import android.view.View;
-        import android.widget.SeekBar;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.content.res.AssetFileDescriptor;
+import android.widget.Toast;
+import java.io.IOException;
 
-        import java.util.Timer;
-        import java.util.TimerTask;
+public class TestActivity extends AppCompatActivity implements View.OnClickListener{
 
-public class TestActivity extends AppCompatActivity {
-
-
-    MediaPlayer mplayer;
-    AudioManager audioManager;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        mplayer = MediaPlayer.create(this,R.raw.bgm2);
-        float speed = 1.0f;
-        mplayer.setPlaybackParams(new PlaybackParams().setSpeed(speed));
+        // 音楽開始ボタン
+        Button buttonStart = findViewById(R.id.start);
 
-        audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        int curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-
-
-        SeekBar volumeController = (SeekBar) findViewById(R.id.seekBar1);
-        volumeController.setMax(maxVolume);
-        volumeController.setProgress(curVolume);
-
-        volumeController.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,i,0);
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+        // リスナーをボタンに登録
+        buttonStart.setOnClickListener( v ->  {
+            // 音楽再生
+            audioPlay();
         });
 
-        SeekBar scrubber  = (SeekBar)findViewById(R.id.seekBar2);
-        scrubber.setMax(mplayer.getDuration());
+        // 音楽停止ボタン
+        Button buttonStop = findViewById(R.id.stop);
 
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                scrubber.setProgress(mplayer.getCurrentPosition());
+        // リスナーをボタンに登録
+        buttonStop.setOnClickListener( v -> {
+            if (mediaPlayer != null) {
+                // 音楽停止
+                audioStop();
             }
-        },0,100);
+        });
+    }
+    @Override
+    public void onClick(View view){
 
-        scrubber.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+    }
 
-                mplayer.seekTo(i);
+
+    private boolean audioSetup(){
+        // インタンスを生成
+        mediaPlayer = new MediaPlayer();
+
+        //音楽ファイル名, あるいはパス
+        String filePath = "bgm.mp3";
+
+        boolean fileCheck = false;
+
+        // assetsから mp3 ファイルを読み込み
+        try(AssetFileDescriptor afdescripter = getAssets().openFd(filePath))
+        {
+            // MediaPlayerに読み込んだ音楽ファイルを指定
+            mediaPlayer.setDataSource(afdescripter.getFileDescriptor(),
+                    afdescripter.getStartOffset(),
+                    afdescripter.getLength());
+            // 音量調整を端末のボタンに任せる
+            setVolumeControlStream(AudioManager.STREAM_MUSIC);
+            mediaPlayer.prepare();
+            fileCheck = true;
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
+        return fileCheck;
+    }
+
+    private void audioPlay() {
+
+        if (mediaPlayer == null) {
+            // audio ファイルを読出し
+            if (audioSetup()){
+                Toast.makeText(getApplication(), "Rread audio file", Toast.LENGTH_SHORT).show();
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
+            else{
+                Toast.makeText(getApplication(), "Error: read audio file", Toast.LENGTH_SHORT).show();
+                return;
             }
+        }
+        else{
+            // 繰り返し再生する場合
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            // リソースの解放
+            mediaPlayer.release();
+        }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+        // 再生する
+        mediaPlayer.start();
 
-            }
+        // 終了を検知するリスナー
+//        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            @Override
+//            public void onCompletion(MediaPlayer mp) {
+//                Log.d("debug","end of audio");
+//                audioStop();
+//            }
+//        });
+        // lambda
+        mediaPlayer.setOnCompletionListener( mp -> {
+            Log.d("debug","end of audio");
+            audioStop();
         });
 
     }
 
-    public void onclickPlay(View view){
+    private void audioStop() {
+        // 再生終了
+        mediaPlayer.stop();
+        // リセット
+        mediaPlayer.reset();
+        // リソースの解放
+        mediaPlayer.release();
 
-
-        mplayer.start();
-
+        mediaPlayer = null;
     }
-
-    public void onclickPause(View view){
-
-        mplayer.pause();
-
-    }
-
-    public void onclickStop(View view){
-
-        mplayer.pause();
-
-    }
-
-
-
-
 }

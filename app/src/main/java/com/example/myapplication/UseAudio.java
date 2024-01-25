@@ -29,10 +29,12 @@ import java.io.InputStream;
 import java.util.Locale;
 
 public class UseAudio extends Activity{
-     //wavPlayで使うサンプリングレート
+
+      //wavPlayで使うサンプリングレート
     private static final int SamplingRate = 88000;
 
-    public void wavPlay(Activity activity,@RawRes int id,int mode) {
+    public void wavPlay(Activity activity,@RawRes int id) {
+
         InputStream input = null;
         byte[] wavData = null;
 
@@ -75,11 +77,11 @@ public class UseAudio extends Activity{
                         .build())
                 .setBufferSizeInBytes(bufSize)
                 //AudioTrack.MODE_STREAMかAudioTrack.MODE_STATICを引数modeで受け取って設定する
-                .setTransferMode(mode)
+//                .setTransferMode(mode)
                 .build();
         // 再生
         audioTrack.play();
-        audioTrack.setLoopPoints(0,bufSize-1,-1);
+//        audioTrack.setLoopPoints(0,bufSize-1,-1);
         // ヘッダ44byteをオミット（プツッがなくなる）44byteはヘッダ情報
         assert wavData != null;
         audioTrack.write(wavData, 44, wavData.length-44);
