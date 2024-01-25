@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -159,7 +160,7 @@ public class CalcPageActivity extends AppCompatActivity{
         setContentView(R.layout.activity_calc_page);
 
         useAudio = new UseAudio();
-        useAudio.wavPlay(this,R.raw.bgm);
+
 
 
         //MainActivityから渡されたデータをフィールドに代入する
@@ -267,11 +268,11 @@ public class CalcPageActivity extends AppCompatActivity{
         //正誤判定後、結果を配列に入れる
         if (answerCalc == answer) {
             maru.setVisibility(View.VISIBLE);
-            useAudio.wavPlay(CalcPageActivity.this, R.raw.pinpon);
+            useAudio.wavPlay(R.raw.pinpon, AudioTrack.MODE_STATIC);
             currentResults[3] = "正解";
         } else {
             batsu.setVisibility(View.VISIBLE);
-            useAudio.wavPlay(CalcPageActivity.this, R.raw.boo);
+            useAudio.wavPlay(R.raw.boo, AudioTrack.MODE_STATIC);
             currentResults[3] = "不正解";
         }
         //問題番号、問題、正解、入力した数値を配列に入れる

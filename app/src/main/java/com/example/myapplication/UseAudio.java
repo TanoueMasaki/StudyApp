@@ -1,17 +1,27 @@
 package com.example.myapplication;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.media.AudioAttributes;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.RawRes;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,12 +29,10 @@ import java.io.InputStream;
 import java.util.Locale;
 
 public class UseAudio extends Activity{
-
-    // wavPlayで使うサンプリングレート
+     //wavPlayで使うサンプリングレート
     private static final int SamplingRate = 88000;
 
-    MediaPlayer mediaPlayer;
-    public void wavPlay(Activity activity,@RawRes int id) {
+    public void wavPlay(Activity activity,@RawRes int id,int mode) {
         InputStream input = null;
         byte[] wavData = null;
 
@@ -57,8 +65,8 @@ public class UseAudio extends Activity{
         // AudioTrack.Builder API level 26より
         AudioTrack audioTrack = new AudioTrack.Builder()
                 .setAudioAttributes(new AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                         .build())
                 .setAudioFormat(new AudioFormat.Builder()
                         .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
@@ -66,23 +74,14 @@ public class UseAudio extends Activity{
                         .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
                         .build())
                 .setBufferSizeInBytes(bufSize)
+                //AudioTrack.MODE_STREAMかAudioTrack.MODE_STATICを引数modeで受け取って設定する
+                .setTransferMode(mode)
                 .build();
         // 再生
         audioTrack.play();
+        audioTrack.setLoopPoints(0,bufSize-1,-1);
         // ヘッダ44byteをオミット（プツッがなくなる）44byteはヘッダ情報
         assert wavData != null;
         audioTrack.write(wavData, 44, wavData.length-44);
     }
-
-    //MediaPlayerを使用（BGMなどゆっくりでいいやつ）
-    public void mediaPlay(Activity activity,@RawRes int id) {
-
-
-        mediaPlayer = MediaPlayer.create(activity,id);
-        mediaPlayer.setVolume(5.0f, 5.0f);
-        mediaPlayer.start();
-
-    }
-
-
 }

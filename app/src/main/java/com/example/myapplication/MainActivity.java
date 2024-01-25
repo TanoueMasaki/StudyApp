@@ -98,7 +98,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // Serviceの開始
+        Intent intentAudio = new Intent(MainActivity.this, useService.class);
+        startService(intentAudio);
 
         //左スピナーを設定
         String[] leftArray = new String[100];
@@ -268,8 +270,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TestActivity.class);
-                startActivity(intent);
+                Intent intentAudio = new Intent(MainActivity.this, UseAudio.class);
+                stopService(intentAudio);
+//                Intent intent = new Intent(MainActivity.this, TestActivity.class);
+//                startActivity(intent);
             }
         });
     }
@@ -283,6 +287,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //カスタムの演算子ボタン
         if(id == R.id.buAddition){
+
             MainActivity.this.setOpe(Operator.ADDITION);
             buttonSetColor(buAddition);
         }else if(id == R.id.buSubtraction){
