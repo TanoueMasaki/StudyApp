@@ -103,8 +103,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         audioPlay();
 
-
-
         //左スピナーを設定
         String[] leftArray = new String[100];
         for (int i = 0; i < 100; i++) {
@@ -258,7 +256,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-
         //過去の結果ボタンが押されたら
         Button btnPastResu = findViewById(R.id.btnPastResu);
         btnPastResu.setOnClickListener(new View.OnClickListener() {
@@ -268,20 +265,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
-        //テスト用
-        Button btnTest = findViewById(R.id.btnTest);
-        btnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TestActivity.class);
-                startActivity(intent);
-            }
-        });
-
-//        btnTest.setOnClickListener( v ->  {
-//            // 音楽再生
-//            audioPlay();
-//        });
     }
 
     @Override
@@ -625,12 +608,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 audioStop();
             }
         });
-        // lambda
-//        mediaPlayer.setOnCompletionListener( mp -> {
-//            Log.d("debug","end of audio");
-//            audioStop();
-//        });
-
     }
 
     private void audioStop() {

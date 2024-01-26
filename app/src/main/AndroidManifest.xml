@@ -23,10 +23,6 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".TestActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".CalcPageActivity"
             android:exported="false"
             android:screenOrientation="landscape" />

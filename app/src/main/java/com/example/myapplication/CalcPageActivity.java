@@ -42,7 +42,7 @@ public class CalcPageActivity extends AppCompatActivity{
     List<String[]> results;
     TextView leftValueText;
     TextView rightValueText;
-    TextView answerText;
+
     TextView textJudge;
     TextView textTap;
     TextView opeText;
@@ -57,6 +57,7 @@ public class CalcPageActivity extends AppCompatActivity{
     Button bu7;
     Button bu8;
     Button bu9;
+    TextView answerText;
     Button judgment;
     Button buttonFinish;
     Button buAllClear;
