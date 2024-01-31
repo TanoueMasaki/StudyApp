@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package jp.xdomain.html.diveeeeen;
 
 public enum Operator {
     ADDITION("+"),

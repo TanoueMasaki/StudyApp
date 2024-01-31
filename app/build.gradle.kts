@@ -3,15 +3,15 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapplication"
+    namespace = "jp.xdomain.html.diveeeeen"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.myapplication"
+        applicationId = "jp.xdomain.html.diveeeeen"
         minSdk = 28
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

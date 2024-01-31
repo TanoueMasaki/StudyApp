@@ -1,7 +1,6 @@
-package com.example.myapplication;
+package jp.xdomain.html.diveeeeen;
 
 import android.app.Activity;
-import android.content.res.Resources;
 
 import androidx.annotation.ColorRes;
 import androidx.appcompat.app.AppCompatActivity;
