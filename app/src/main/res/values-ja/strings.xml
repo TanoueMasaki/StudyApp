@@ -32,6 +32,7 @@
     <string name="PastResultStart">過去の結果</string>
     <string name="custom">カスタム</string>
     <string name="comingSoon">Coming Soon</string>
+    <string name="privacyPolicy">プライバシーポリシー</string>
     <!--activity_calcpage-->
     <string name="remainder">あまり</string>
     <string name="returnToTop">TOPへ戻る</string>

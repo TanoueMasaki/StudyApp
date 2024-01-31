@@ -206,6 +206,10 @@ public class CalcPageActivity extends AppCompatActivity{
         btnRemainder = findViewById(R.id.btnRemainder);
         opeText = findViewById(R.id.ope);
 
+        if(getOpeInt() != 3){
+            btnRemainder.setVisibility(View.INVISIBLE);
+        }
+
         //演算子を画面に表示
         opeText.setText(opeStr);
 
@@ -248,8 +252,23 @@ public class CalcPageActivity extends AppCompatActivity{
         textJudge.setVisibility(View.VISIBLE);
         textTap.setVisibility(View.VISIBLE);
 
+        //入力した答えの取得
         String answerStr = answerText.getText().toString();
-        int answer = Integer.parseInt(answerStr);
+        int answer = 0;
+        if(getOpeInt() != 3){
+            answer = Integer.parseInt(answerStr);
+        } else {
+            if(this.getLeftValue() % this.getRightValue() == 0){
+                answer = Integer.parseInt(answerStr);
+            }else {
+                int index = answerStr.indexOf("…");
+                String answerStr1 = answerStr.substring(0,index);
+                String answerStr2 = answerStr.substring(index + 1);
+                answer = Integer.parseInt(answerStr1) + Integer.parseInt(answerStr2);
+            }
+        }
+
+        //答えの取得
         int answerCalc = calculation.makeCalculation(
                 this.getOpeInt(),
                 this.getLeftValue(),
@@ -331,9 +350,11 @@ public class CalcPageActivity extends AppCompatActivity{
         bu9.setVisibility(View.VISIBLE);
         buDelete.setVisibility(View.VISIBLE);
         buAllClear.setVisibility(View.VISIBLE);
-        btnRemainder.setVisibility(View.VISIBLE);
         buttonFinish.setVisibility(View.VISIBLE);
         judgment.setVisibility(View.VISIBLE);
+        if(getOpeInt() == 3){
+            btnRemainder.setVisibility(View.VISIBLE);
+        }
 
         //○×の非表示
         textTap.setVisibility(View.INVISIBLE);
@@ -459,7 +480,7 @@ public class CalcPageActivity extends AppCompatActivity{
         answerText.setText(this.getAnswerStr());
     }
     public void onClickBtnRemainder(View view) {
-        this.setAnswerStr(":");
+        this.setAnswerStr("…");
         answerText.setText(this.getAnswerStr());
     }
 
@@ -476,8 +497,8 @@ public class CalcPageActivity extends AppCompatActivity{
     }
 
     @Override
-    public void onPause(){
-        super.onPause();
+    public void onStop(){
+        super.onStop();
 
         this.finish();
     }

@@ -1,16 +1,20 @@
 package jp.xdomain.html.diveeeeen;
 
+import static com.google.api.AnnotationsProto.http;
+
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnDivision8;
     Button btnDivision9;
     Button btnDivision10;
-    Button btnTest;
+    TextView privacyPolicy;
     Spinner leftSpinner;
     Spinner rightSpinner;
     private MediaPlayer mediaPlayer;
@@ -214,19 +218,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDivision9.setOnClickListener(this);
         btnDivision10.setOnClickListener(this);
 
-        //いったん無効化
-        btnDivision1.setEnabled(false);
-        btnDivision2.setEnabled(false);
-        btnDivision3.setEnabled(false);
-        btnDivision4.setEnabled(false);
-        btnDivision5.setEnabled(false);
-        btnDivision6.setEnabled(false);
-        btnDivision7.setEnabled(false);
-        btnDivision8.setEnabled(false);
-        btnDivision9.setEnabled(false);
-        btnDivision10.setEnabled(false);
-        buDivision.setEnabled(false);
-
         //カスタムの演算子ボタンが押されたら
         buAddition.setOnClickListener(this);
         buSubtraction.setOnClickListener(this);
@@ -259,6 +250,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AllResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //プライバシーポリシーがタッチされたら
+        privacyPolicy = findViewById(R.id.privacyPolicy);
+        privacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("http://diveeeeen.html.xdomain.jp/privacypolicy.html");
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(intent);
             }
         });
@@ -433,43 +435,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (id == R.id.btnDivision1) {
                 buttonSetColor(btnDivision1);
                 setIniValFinVal(1, 5);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision2) {
                 buttonSetColor(btnDivision2);
                 setIniValFinVal(6, 10);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision3) {
                 buttonSetColor(btnDivision3);
                 setIniValFinVal(11, 15);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision4) {
                 buttonSetColor(btnDivision4);
                 setIniValFinVal(16, 20);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision5) {
                 buttonSetColor(btnDivision5);
                 setIniValFinVal(21, 25);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision6) {
                 buttonSetColor(btnDivision6);
                 setIniValFinVal(26, 30);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision7) {
                 buttonSetColor(btnDivision7);
                 setIniValFinVal(31, 35);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision8) {
                 buttonSetColor(btnDivision8);
                 setIniValFinVal(36, 40);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision9) {
                 buttonSetColor(btnDivision9);
                 setIniValFinVal(41, 45);
-//                    startCalc();
+                    startCalc();
             } else if (id == R.id.btnDivision10) {
                 buttonSetColor(btnDivision10);
                 setIniValFinVal(46, 50);
-//                    startCalc();
+                    startCalc();
             }
         }
     }
@@ -554,6 +556,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         audioStop();
     }
+
+    //    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//
+//        audioStop();
+//    }
 
     private boolean audioSetup(){
         // インタンスを生成

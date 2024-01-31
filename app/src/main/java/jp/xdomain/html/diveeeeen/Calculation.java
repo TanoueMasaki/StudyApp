@@ -22,7 +22,7 @@ public class Calculation {
             answer = leftValue * rightValue;
             break;
             case 3 :
-            answer = leftValue / rightValue;
+            answer = leftValue / rightValue + leftValue % rightValue;
             break;
         }
         return answer;

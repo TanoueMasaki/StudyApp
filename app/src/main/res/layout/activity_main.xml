@@ -407,15 +407,6 @@
                 android:layout_marginTop="32dp"
                 android:text="@string/division"
                 android:textSize="34sp" />
-            <TextView
-                android:id="@+id/comingSoon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/comingSoon"
-                android:textColor="#FF0000"
-                android:textSize="24sp"
-                tools:layout_editor_absoluteX="-1dp"
-                tools:layout_editor_absoluteY="360dp" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutDivision1"
@@ -598,6 +589,17 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/privacyPolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/privacyPolicy"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
