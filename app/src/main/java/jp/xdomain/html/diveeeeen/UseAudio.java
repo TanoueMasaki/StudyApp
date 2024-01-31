@@ -1,27 +1,11 @@
-package com.example.myapplication;
+package jp.xdomain.html.diveeeeen;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
 import android.media.AudioAttributes;
 import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioTrack;
-import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.os.IBinder;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.RawRes;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

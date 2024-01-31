@@ -1,6 +1,5 @@
-package com.example.myapplication;
+package jp.xdomain.html.diveeeeen;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
@@ -100,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        audioPlay();
 
         //左スピナーを設定
         String[] leftArray = new String[100];
@@ -543,10 +540,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
+        audioPlay();
+
         leftSpinner.setSelection(0);
         rightSpinner.setSelection(0);
         this.setOpe(null);
         buttonAllColorReset();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        audioStop();
     }
 
     private boolean audioSetup(){
@@ -582,7 +588,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mediaPlayer == null) {
             // audio ファイルを読出し
             if (audioSetup()){
-                Toast.makeText(getApplication(), "Rread audio file", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplication(), "Rread audio file", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(getApplication(), "Error: read audio file", Toast.LENGTH_SHORT).show();

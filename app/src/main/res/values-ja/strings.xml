@@ -32,4 +32,11 @@
     <string name="PastResultStart">過去の結果</string>
     <string name="custom">カスタム</string>
     <string name="comingSoon">Coming Soon</string>
+    <!--activity_calcpage-->
+    <string name="remainder">あまり</string>
+    <string name="returnToTop">TOPへ戻る</string>
+    <string name="judge">判定する</string>
+    <string name="backSpace">1字消す</string>
+    <string name="delete">全て消す</string>
+    <string name="tapNext">タップして次へ</string>
 </resources>

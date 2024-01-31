@@ -39,8 +39,6 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Service" />
-
     </application>
 
 </manifest>

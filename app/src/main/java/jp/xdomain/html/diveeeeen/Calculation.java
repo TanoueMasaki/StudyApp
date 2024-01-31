@@ -1,7 +1,5 @@
-package com.example.myapplication;
+package jp.xdomain.html.diveeeeen;
 
-
-import com.example.myapplication.Operator;
 
 import java.util.ArrayList;
 import java.util.List;

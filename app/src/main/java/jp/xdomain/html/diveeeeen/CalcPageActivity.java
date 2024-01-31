@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package jp.xdomain.html.diveeeeen;
 
 import java.io.FileOutputStream;
 import java.time.LocalDate;
@@ -6,24 +6,13 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.AudioManager;
-import android.media.AudioTrack;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 public class CalcPageActivity extends AppCompatActivity{
 
@@ -62,6 +51,7 @@ public class CalcPageActivity extends AppCompatActivity{
     Button buttonFinish;
     Button buAllClear;
     Button buDelete;
+    Button btnRemainder;
     ImageView maru;
     ImageView batsu;
     LocalDate date;
@@ -213,6 +203,7 @@ public class CalcPageActivity extends AppCompatActivity{
         judgment = findViewById(R.id.judgment);
         buDelete = findViewById(R.id.buDelete);
         buAllClear = findViewById(R.id.buAllClear);
+        btnRemainder = findViewById(R.id.btnRemainder);
         opeText = findViewById(R.id.ope);
 
         //演算子を画面に表示
@@ -250,6 +241,7 @@ public class CalcPageActivity extends AppCompatActivity{
         bu9.setVisibility(View.INVISIBLE);
         buDelete.setVisibility(View.INVISIBLE);
         buAllClear.setVisibility(View.INVISIBLE);
+        btnRemainder.setVisibility(View.INVISIBLE);
         buttonFinish.setVisibility(View.INVISIBLE);
         judgment.setVisibility(View.INVISIBLE);
 
@@ -339,6 +331,7 @@ public class CalcPageActivity extends AppCompatActivity{
         bu9.setVisibility(View.VISIBLE);
         buDelete.setVisibility(View.VISIBLE);
         buAllClear.setVisibility(View.VISIBLE);
+        btnRemainder.setVisibility(View.VISIBLE);
         buttonFinish.setVisibility(View.VISIBLE);
         judgment.setVisibility(View.VISIBLE);
 
@@ -463,6 +456,10 @@ public class CalcPageActivity extends AppCompatActivity{
     //9ボタンが押されたら
     public void onClickBu9(View view) {
         this.setAnswerStr("9");
+        answerText.setText(this.getAnswerStr());
+    }
+    public void onClickBtnRemainder(View view) {
+        this.setAnswerStr(":");
         answerText.setText(this.getAnswerStr());
     }
 

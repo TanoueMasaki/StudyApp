@@ -32,6 +32,11 @@
     <string name="PastResultStart">PastResult</string>
     <string name="custom">Custom</string>
     <string name="comingSoon">Coming Soon</string>
-
-
+    <!--activity_calcpage-->
+    <string name="remainder">Remainder</string>
+    <string name="returnToTop">TOP</string>
+    <string name="judge">Judge</string>
+    <string name="backSpace">BackSpace</string>
+    <string name="delete">Delete</string>
+    <string name="tapNext">Tap To Next</string>
 </resources>

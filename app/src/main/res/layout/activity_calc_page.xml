@@ -68,26 +68,26 @@
 
 <!--TOPに戻るボタン-->
     <Button
-        android:onClick="onClickButtonFinish"
         android:id="@+id/buttonFinish"
         android:layout_width="278dp"
         android:layout_height="87dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="#6B78A8"
-        android:text="トップに戻る"
+        android:onClick="onClickButtonFinish"
+        android:text="@string/returnToTop"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:onClick="onClickJudgment"
         android:id="@+id/judgment"
         android:layout_width="267dp"
         android:layout_height="68dp"
         android:backgroundTint="#5B73E4"
-        android:text="判定する"
+        android:onClick="onClickJudgment"
+        android:text="@string/judge"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -229,13 +229,13 @@
         app:layout_constraintTop_toBottomOf="@+id/bu4" />
 
     <Button
-        android:onClick="onClickBuDelete"
         android:id="@+id/buDelete"
         android:layout_width="245dp"
         android:layout_height="82dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="-21dp"
-        android:text="一字消す"
+        android:onClick="onClickBuDelete"
+        android:text="@string/backSpace"
         android:textColor="#333377"
         android:textSize="34sp"
         app:backgroundTint="#BEC8EF"
@@ -247,13 +247,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:onClick="onClickBuAllClear"
         android:id="@+id/buAllClear"
         android:layout_width="245dp"
         android:layout_height="82dp"
         android:layout_marginStart="-21dp"
         android:layout_marginTop="20dp"
-        android:text="全て消す"
+        android:onClick="onClickBuAllClear"
+        android:text="@string/delete"
         android:textColor="#333377"
         android:textSize="34sp"
         app:backgroundTint="#BEC8EF"
@@ -261,6 +261,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/bu7"
+        app:layout_constraintTop_toBottomOf="@+id/bu7"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnRemainder"
+        android:layout_width="245dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="20dp"
+        android:onClick="onClickBtnRemainder"
+        android:text="@string/remainder"
+        android:textColor="#333377"
+        android:textSize="34sp"
+        app:backgroundTint="#BEC8EF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buAllClear"
         app:layout_constraintTop_toBottomOf="@+id/bu7"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -282,7 +298,7 @@
         android:layout_height="wrap_content"
         android:elevation="1dp"
         android:gravity="center"
-        android:text="タップしてつぎへ"
+        android:text="@string/tapNext"
         android:textColor="@color/red"
         android:textSize="40dp"
         android:textStyle="bold"
